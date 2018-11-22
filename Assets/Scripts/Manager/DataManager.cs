@@ -94,7 +94,6 @@ public class DataManager : SingletonMonoBehaviour<DataManager> {
         m_team2Data.Add(1, m_tempTeam2CharInfo[1]);
         m_team2Data.Add(2, m_tempTeam2CharInfo[2]);
         m_team2Data.Add(3, m_tempTeam2CharInfo[3]);
-        
     }
 
 }

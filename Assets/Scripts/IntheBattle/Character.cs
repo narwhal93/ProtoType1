@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Character : MonoBehaviour {
 
+    public BattleManager m_battleManager;
+
     public string m_index { get; set; }
     public string m_name { get; set; }
     public string m_portraitName { get; set; }
@@ -15,6 +17,7 @@ public class Character : MonoBehaviour {
         supporter
     }
 
+    
     public string m_star;
     public int m_level;
     public float m_hp;
@@ -28,14 +31,15 @@ public class Character : MonoBehaviour {
     public float m_coopChance;
     public float m_comboChance;
 
+    public float m_action;
 
     public void SetData() {
 
-
     }
 
-    private void Start()
+    void OnMouseDown()
     {
-        m_level = 10;
+        m_battleManager.CharacterClicked(this.name);
     }
+
 }
