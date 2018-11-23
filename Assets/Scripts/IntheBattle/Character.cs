@@ -33,7 +33,16 @@ public class Character : MonoBehaviour {
 
     public float m_action;
 
-    public void SetData() {
+    public void OnAction()
+    {
+        if (m_action >= 100f)
+        {
+            m_battleManager.OnActionList(this);
+            m_action -= 100f;
+        }
+    }
+
+    public void ResetData() {
 
     }
 

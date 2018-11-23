@@ -53,6 +53,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Buttons\Loading.cs" />
      <Compile Include="Assets\Scripts\Buttons\StartButtons.cs" />
+     <Compile Include="Assets\Scripts\IntheBattle\BarIcons.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Character.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\JustAttack.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\Skill.cs" />
@@ -62,6 +63,7 @@
      <Compile Include="Assets\Scripts\Manager\DataManager.cs" />
      <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
      <Compile Include="Assets\Scripts\Manager\LoadSceneManager.cs" />
+     <Compile Include="Assets\Scripts\Manager\TimeBarManager.cs" />
      <Compile Include="Assets\Scripts\Utils\DontDestroy.cs" />
      <Compile Include="Assets\Scripts\Utils\GameObjectPool.cs" />
      <Compile Include="Assets\Scripts\Utils\Singleton.cs" />

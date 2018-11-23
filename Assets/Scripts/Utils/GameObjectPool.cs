@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class GameObjectPool<T> where T : class
 {
-    short count;
+    int count;
     public delegate T Func();
     Func create_fn;
     // Instances.  
     Stack<T> objects;
     // Construct  
-    public GameObjectPool(short count, Func fn)
+    public GameObjectPool(int count, Func fn)
     {
         this.count = count;
         this.create_fn = fn;        

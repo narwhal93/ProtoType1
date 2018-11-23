@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour {
 
-    Character m_target;
-    Character m_user;
 
     [SerializeField]
     CharManager m_charManager;
 
+    [SerializeField]
+    TimeBarManager m_timeBarManager;
+
+    Character m_target;
+    Character m_user;
     public Skill[] m_skills;
 
+    List<Character> m_charOnAction;
+
     enum BattleState {
+        battleWaiting = 0,
         battleThinking,
         battleShowing,
         battleEnd
@@ -35,17 +41,16 @@ public class BattleManager : MonoBehaviour {
 
     public void SetSkillUser()
     {
-        for (int i = 0; i<m_skills.Length; i++)
+        for (int i = 0; i < m_skills.Length; i++)
         {
             m_skills[i].m_userCharacter = m_user;
         }
     }
 
-    public void CharacterClicked(string name)
+    public void MyTurn(Character character)
     {
-        ChangeTarget(name);
-        SetSkillUser();
-        UseSkill();
+        m_user = character;
+        m_battleSt = BattleState.battleThinking;
     }
 
     public void UseSkill()
@@ -70,9 +75,25 @@ public class BattleManager : MonoBehaviour {
         }
     }
 
+    public void CharacterClicked(string name)
+    {
+        if (m_battleSt == BattleState.battleThinking)
+        {
+            ChangeTarget(name);
+            SetSkillUser();
+            UseSkill();
+        }
+    }
+
+    public void OnActionList(Character character)
+    {
+        m_charOnAction.Add(character);
+    }
+
 	// Use this for initialization
 	void Start () {
-        m_battleSt = BattleState.battleThinking;
+        m_charOnAction = new List<Character>();
+        m_battleSt = BattleState.battleWaiting;
         m_SKillSt = SkillState.Skill1;
         m_skills = new Skill[3]; 
         m_target = null;
@@ -80,6 +101,43 @@ public class BattleManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		switch(m_battleSt)
+        {
+            case BattleState.battleWaiting:
+                {
+                    if (m_charOnAction.Count >= 1)
+                    {
+                        {
+                            MyTurn(m_charOnAction[m_charOnAction.Count]);
+                        }
+                        break;
+                    }
+                    for (int i = 0; i < m_charManager.m_team1.Count; i++)
+                    {
+                        m_charManager.m_team1[i].m_action += m_charManager.m_team1[i].m_speed * Time.deltaTime*0.01f;
+                    }
+                    for (int i = 0; i < m_charManager.m_team2.Count; i++)
+                    {
+                        m_charManager.m_team2[i].m_action += m_charManager.m_team2[i].m_speed * Time.deltaTime * 0.01f;
+                    }
+                    for (int i = 0; i < m_timeBarManager.m_barIconList.Count; i++)
+                    {
+                        m_timeBarManager.m_barIconList[i].Action();
+                    }
+                    break;
+                }
+            case BattleState.battleThinking:
+                {
+                    break;
+                }
+            case BattleState.battleShowing:
+                {
+                    break;
+                }
+            case BattleState.battleEnd:
+                {
+                    break;
+                }
+        }
 	}
 }
