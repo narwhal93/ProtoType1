@@ -6,8 +6,6 @@ public class BarIcons : MonoBehaviour {
 
     Character m_target;
 
-    public int m_id;
-
     public void SetTarget(Character target)
     {
         m_target = target;
@@ -15,11 +13,6 @@ public class BarIcons : MonoBehaviour {
 
     public void Action()
     {
-        this.transform.position = new Vector3(-145, 70 - 150*m_target.m_action/100, -1);
+        this.transform.position = new Vector3(-590, 325 - 695*m_target.m_action/100, -1);
     }
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 }

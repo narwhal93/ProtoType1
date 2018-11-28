@@ -5,7 +5,8 @@ using UnityEngine;
 public class SkillReporter : MonoBehaviour {
 
     [SerializeField]
-    int skill;
+    int m_skill;
+    
 
     [SerializeField]
     BattleManager m_battleManager;
@@ -13,20 +14,21 @@ public class SkillReporter : MonoBehaviour {
     [SerializeField]
     SpriteRenderer[] m_otherSkills;
 
-    Sprite m_black, m_orange;
+    SpriteRenderer m_thisSkill;
 
     void Start() {
-        m_black = Resources.Load<Sprite>("how big");
-        m_orange = Resources.Load<Sprite>("SkillSelected");
+        m_thisSkill = this.GetComponent<SpriteRenderer>();
     }
 
     void OnMouseDown()
     {
-        if (skill == 1) m_battleManager.m_SKillSt = BattleManager.SkillState.Skill1;
-        if (skill == 2) m_battleManager.m_SKillSt = BattleManager.SkillState.Skill2;
-        if (skill == 3) m_battleManager.m_SKillSt = BattleManager.SkillState.Skill3;
-        m_otherSkills[0].sprite = m_black;
-        m_otherSkills[1].sprite = m_black;
-        this.GetComponent<SpriteRenderer>().sprite = m_orange;
+        if (m_skill == 1) m_battleManager.m_SKillSt = BattleManager.SkillState.Skill1;
+        if (m_skill == 2) m_battleManager.m_SKillSt = BattleManager.SkillState.Skill2;
+        if (m_skill == 3) m_battleManager.m_SKillSt = BattleManager.SkillState.Skill3;
+
+        m_otherSkills[0].color = Color.black;
+        m_otherSkills[1].color = Color.black;
+        m_thisSkill.color = new Color(0.9f,0.5f, 0,1);
+
     }
 }

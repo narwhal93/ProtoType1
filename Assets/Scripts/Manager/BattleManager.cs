@@ -108,17 +108,20 @@ public class BattleManager : MonoBehaviour {
                     if (m_charOnAction.Count >= 1)
                     {
                         {
-                            MyTurn(m_charOnAction[m_charOnAction.Count]);
-                        }
+                            MyTurn(m_charOnAction[m_charOnAction.Count-1]);
+                        } 
                         break;
                     }
                     for (int i = 0; i < m_charManager.m_team1.Count; i++)
                     {
-                        m_charManager.m_team1[i].m_action += m_charManager.m_team1[i].m_speed * Time.deltaTime*0.01f;
+                        m_charManager.m_team1[i].m_action += m_charManager.m_team1[i].m_speed * Time.deltaTime * 0.1f;
+                        if (m_charManager.m_team1[i].m_action >= 100f) m_charOnAction.Add(m_charManager.m_team1[i]);
+                        
                     }
                     for (int i = 0; i < m_charManager.m_team2.Count; i++)
                     {
-                        m_charManager.m_team2[i].m_action += m_charManager.m_team2[i].m_speed * Time.deltaTime * 0.01f;
+                        m_charManager.m_team2[i].m_action += m_charManager.m_team2[i].m_speed * Time.deltaTime * 0.1f;
+                        if (m_charManager.m_team2[i].m_action >= 100f) m_charOnAction.Add(m_charManager.m_team2[i]);
                     }
                     for (int i = 0; i < m_timeBarManager.m_barIconList.Count; i++)
                     {

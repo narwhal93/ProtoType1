@@ -5,9 +5,6 @@ using UnityEngine;
 public class TimeBarManager : MonoBehaviour {
 
     [SerializeField]
-    CharManager m_charManager;
-
-    [SerializeField]
     GameObject m_iconPrefab;
 
     public List<BarIcons> m_barIconList;
@@ -24,16 +21,4 @@ public class TimeBarManager : MonoBehaviour {
             m_barIconList.Add(Bar);
         }
     }
-
-	// Use this for initialization
-	void Start () {
-        
-	}
-
-    
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

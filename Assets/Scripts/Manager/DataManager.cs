@@ -12,10 +12,8 @@ public class DataManager : SingletonMonoBehaviour<DataManager> {
     string m_Path;
     //DataSets
     public Dictionary<int, int[]> m_team1Data, m_team2Data;
-    public Dictionary<string, string> m_charNumData;
+    public Dictionary<int, string> m_charBaseData;
     public Dictionary<int, string> m_stringData;
-
-
     //TempDataSets
     List<int[]> m_tempTeam1CharInfo, m_tempTeam2CharInfo;
 
@@ -25,18 +23,18 @@ public class DataManager : SingletonMonoBehaviour<DataManager> {
 
         m_team1Data = new Dictionary<int, int[]>();
         m_team2Data = new Dictionary<int, int[]>();
-        m_charNumData = new Dictionary<string, string>();
+        m_charBaseData = new Dictionary<int, string>();
         m_stringData = new Dictionary<int, string>();
 
+ 
         ReadDataFile();
+        ReadLevelData();
         ReadCharFile();
-
     }
 
     void ReadDataFile()
     {
-        StreamReader strReader = new StreamReader(m_Path + "/Data/excel_char.csv");
-        string pre_index = "index";
+        StreamReader strReader = new StreamReader(m_Path + "/Data/excel_base.csv");
         bool endOfFile = false;
         while (!endOfFile)
         {
@@ -49,28 +47,63 @@ public class DataManager : SingletonMonoBehaviour<DataManager> {
             }
             
             var data_values = data_String.Split(',');
-            
-            if (!data_values[0].Equals("") && !data_values[0].Equals("index"))
+
+            if (data_values[0] == "")
             {
-              //  Debug.Log("come");
-                string m_tempCharData = data_values[7];
-                for (int i = 8; i < data_values.Length; i++)
-                {
-                    m_tempCharData += ",";
-                    m_tempCharData += data_values[i];
-                }
-                m_charNumData.Add(data_values[0] + "," + data_values[6], m_tempCharData);
+                endOfFile = true;
+                break;
             }
-            if (!data_values[0].Equals(pre_index) && !data_values[0].Equals(""))
+
+            if (!data_values[0].Equals("index") && !data_values[0].Equals("int"))
             {
-                pre_index = data_values[0];
-                m_stringData.Add(int.Parse(data_values[0]),data_values[1] + data_values[2] + data_values[3] + data_values[4] + data_values[5]);
+                string temp = data_values[1];
+                for (int i = 2; i < data_values.Length-1; i++)
+                {
+                    temp += "," + data_values[i];
+                }
+                m_charBaseData.Add(int.Parse(data_values[0]),temp);
             }
         }
     }
 
+    void ReadLevelData()
+    {
+        //ReadFiles
+        /*
+        StreamReader strReader = new StreamReader(m_Path + "/Data/excel_Level.csv");
+        bool endOfFile = false;
+        while (!endOfFile)
+        {
+            string data_String = strReader.ReadLine();
+
+            if (data_String == null)
+            {
+                endOfFile = true;
+                break;
+            }
+        }
+        */
+
+    }
+
     void ReadCharFile()
     {
+
+        // ReadFiles
+        /*
+        StreamReader strReader = new StreamReader(m_Path + "/Data/excel_char.csv");
+        bool endOfFile = false;
+        while (!endOfFile)
+        {
+            string data_String = strReader.ReadLine();
+
+            if (data_String == null)
+            {
+                endOfFile = true;
+                break;
+            }
+        }
+        */
         m_tempTeam1CharInfo = new List<int[]>()
         {
             new int[] { 1,1},

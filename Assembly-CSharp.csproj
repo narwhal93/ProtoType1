@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\Buttons\StartButtons.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\BarIcons.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Character.cs" />
+     <Compile Include="Assets\Scripts\IntheBattle\HpBar.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\JustAttack.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\Skill.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\SkillReporter.cs" />
@@ -62,6 +63,7 @@
      <Compile Include="Assets\Scripts\Manager\CharManager.cs" />
      <Compile Include="Assets\Scripts\Manager\DataManager.cs" />
      <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Manager\HpBarManager.cs" />
      <Compile Include="Assets\Scripts\Manager\LoadSceneManager.cs" />
      <Compile Include="Assets\Scripts\Manager\TimeBarManager.cs" />
      <Compile Include="Assets\Scripts\Utils\DontDestroy.cs" />
