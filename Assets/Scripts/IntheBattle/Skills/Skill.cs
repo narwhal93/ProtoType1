@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Skill : MonoBehaviour{
 
-    public Character target;
+    public Character m_target;
     public Character m_userCharacter;
-
+    public Animator m_animator;
 
     public virtual void Activating(Character target)
     {

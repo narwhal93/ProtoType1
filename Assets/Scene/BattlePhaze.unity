@@ -253,8 +253,6 @@ MonoBehaviour:
     type: 2}
   m_timeBarManager: {fileID: 128738351}
   m_hpBarManager: {fileID: 1777955786}
-  m_team1: []
-  m_team2: []
   m_isLeftSide: 0
 --- !u!4 &260977664
 Transform:
@@ -518,8 +516,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1045392921
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 890999bcab9d069408f93b1d6b90181a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -851,7 +849,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1045392921
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1361905656
@@ -936,7 +934,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: e97ea6e965a7ed044acbcd3ff59096fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1105,7 +1103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_charManager: {fileID: 260977663}
   m_timeBarManager: {fileID: 128738351}
-  m_skills: []
+  m_target: {fileID: 0}
+  m_myTurn: {fileID: 0}
   m_SKillSt: 0
 --- !u!1 &1721442712
 GameObject:
@@ -1347,8 +1346,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1045392921
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 890999bcab9d069408f93b1d6b90181a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

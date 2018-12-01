@@ -26,6 +26,6 @@ public class HpBar : MonoBehaviour {
 
     public void Move()
     {
-        this.gameObject.transform.position = m_target.gameObject.transform.position + new Vector3(0,70,0);
+        this.gameObject.transform.position = m_target.gameObject.transform.position + new Vector3(0,150,0);
     }
 }

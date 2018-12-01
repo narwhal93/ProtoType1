@@ -8,25 +8,28 @@ public class DataManager : SingletonMonoBehaviour<DataManager> {
     //Global Data
     [SerializeField]
     public int m_charNumPerTeam = 4;
+
     //Root Path
     string m_Path;
+
     //DataSets
-    public Dictionary<int, int[]> m_team1Data, m_team2Data;
+    public Dictionary<int, int[]>[] m_teamData;
     public Dictionary<int, string> m_charBaseData;
     public Dictionary<int, string> m_stringData;
+
     //TempDataSets
-    List<int[]> m_tempTeam1CharInfo, m_tempTeam2CharInfo;
+    List<int[]>[] m_tempCharInfo;
 
     void Start()
     {
         m_Path = Application.dataPath;
 
-        m_team1Data = new Dictionary<int, int[]>();
-        m_team2Data = new Dictionary<int, int[]>();
+        m_tempCharInfo = new List<int[]>[] { new List<int[]>() , new List<int[]>() };
+        m_teamData = new Dictionary<int, int[]>[2]{ new Dictionary<int, int[]>(), new Dictionary<int, int[]>()};
+
         m_charBaseData = new Dictionary<int, string>();
         m_stringData = new Dictionary<int, string>();
 
- 
         ReadDataFile();
         ReadLevelData();
         ReadCharFile();
@@ -104,29 +107,27 @@ public class DataManager : SingletonMonoBehaviour<DataManager> {
             }
         }
         */
-        m_tempTeam1CharInfo = new List<int[]>()
-        {
+        m_tempCharInfo[0] = new List<int[]>() {
+            new int[] { 1, 1 },
+            new int[] { 1, 2 },
+            new int[] { 1, 3 },
+            new int[] { 1, 4 }
+        };
+        m_tempCharInfo[1] = new List<int[]>() {  
             new int[] { 1,1},
             new int[] { 1,2},
             new int[] { 1,3},
             new int[] { 1,4}
         };
-        m_team1Data.Add(0,m_tempTeam1CharInfo[0]);
-        m_team1Data.Add(1,m_tempTeam1CharInfo[1]);
-        m_team1Data.Add(2,m_tempTeam1CharInfo[2]);
-        m_team1Data.Add(3,m_tempTeam1CharInfo[3]);
 
-        m_tempTeam2CharInfo = new List<int[]>()
-        {
-            new int[] { 1,1},
-            new int[] { 1,2},
-            new int[] { 1,3},
-            new int[] { 1,4}
-        };
-        m_team2Data.Add(0, m_tempTeam2CharInfo[0]);
-        m_team2Data.Add(1, m_tempTeam2CharInfo[1]);
-        m_team2Data.Add(2, m_tempTeam2CharInfo[2]);
-        m_team2Data.Add(3, m_tempTeam2CharInfo[3]);
-    }
+        m_teamData[0].Add(0, m_tempCharInfo[0][0]);
+        m_teamData[0].Add(1, m_tempCharInfo[0][1]);
+        m_teamData[0].Add(2, m_tempCharInfo[0][2]);
+        m_teamData[0].Add(3, m_tempCharInfo[0][3]);
 
+        m_teamData[1].Add(0, m_tempCharInfo[1][0]);
+        m_teamData[1].Add(1, m_tempCharInfo[1][1]);
+        m_teamData[1].Add(2, m_tempCharInfo[1][2]);
+        m_teamData[1].Add(3, m_tempCharInfo[1][3]);
+    }                                       
 }

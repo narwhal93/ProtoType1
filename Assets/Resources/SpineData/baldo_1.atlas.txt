@@ -1,0 +1,83 @@
+
+baldo_1.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+L_Leg
+  rotate: false
+  xy: 956, 332
+  size: 237, 689
+  orig: 237, 689
+  offset: 0, 0
+  index: -1
+R_Leg
+  rotate: false
+  xy: 395, 325
+  size: 561, 696
+  orig: 561, 696
+  offset: 0, 0
+  index: -1
+arm
+  rotate: false
+  xy: 1654, 599
+  size: 354, 422
+  orig: 354, 422
+  offset: 0, 0
+  index: -1
+chest
+  rotate: false
+  xy: 745, 27
+  size: 560, 298
+  orig: 560, 298
+  offset: 0, 0
+  index: -1
+hair
+  rotate: false
+  xy: 1193, 447
+  size: 461, 574
+  orig: 461, 574
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 1193, 335
+  size: 112, 358
+  orig: 112, 358
+  offset: 0, 0
+  index: -1
+skirt
+  rotate: false
+  xy: 1551, 117
+  size: 494, 330
+  orig: 494, 330
+  offset: 0, 0
+  index: -1
+skirt_acce
+  rotate: true
+  xy: 395, 0
+  size: 325, 350
+  orig: 325, 350
+  offset: 0, 0
+  index: -1
+sword
+  rotate: true
+  xy: 1654, 456
+  size: 143, 66
+  orig: 143, 66
+  offset: 0, 0
+  index: -1
+swordhandle
+  rotate: false
+  xy: 1305, 229
+  size: 235, 106
+  orig: 235, 106
+  offset: 0, 0
+  index: -1
+swordzip
+  rotate: true
+  xy: 0, 7
+  size: 1014, 395
+  orig: 1014, 395
+  offset: 0, 0
+  index: -1

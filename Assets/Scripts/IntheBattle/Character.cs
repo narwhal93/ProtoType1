@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Character : MonoBehaviour {
 
+    [SerializeField]
+    public Skill[] m_skills;
+
     public BattleManager m_battleManager;
 
     public BarIcons m_barIcon;
     public HpBar m_hpBar;
-
 
     public int m_index { get; set; }
     public string m_name { get; set; }
@@ -43,7 +45,8 @@ public class Character : MonoBehaviour {
 
     void OnMouseDown()
     {
-        m_battleManager.CharacterClicked(this.gameObject.name);
+        m_battleManager.CharacterClicked(this);
+        Debug.Log("?");
     }
 
 }
