@@ -20,11 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4774899195933878}
   - component: {fileID: 114208985732612566}
-  - component: {fileID: 95746009250071666}
   - component: {fileID: 33154744158654664}
   - component: {fileID: 23606862088975756}
-  - component: {fileID: 114450818903513518}
   - component: {fileID: 61650339424362458}
+  - component: {fileID: 114348183770053230}
   m_Layer: 0
   m_Name: defaultCharcter
   m_TagString: Untagged
@@ -111,23 +110,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 101.8949, y: 141.8585}
   m_EdgeRadius: 0
---- !u!95 &95746009250071666
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1338785383787548}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114208985732612566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,7 +140,7 @@ MonoBehaviour:
   m_comboChance: 0
   m_action: 0
   m_hp: 0
---- !u!114 &114450818903513518
+--- !u!114 &114348183770053230
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -166,7 +148,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1338785383787548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9db98c60740638449864eb028fbe7ad, type: 3}
+  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonDataAsset: {fileID: 0}
@@ -185,6 +167,6 @@ MonoBehaviour:
   calculateTangents: 0
   logErrors: 0
   disableRenderingOnOverride: 1
-  translator:
-    autoReset: 1
-    layerMixModes: 
+  _animationName: 
+  loop: 0
+  timeScale: 1

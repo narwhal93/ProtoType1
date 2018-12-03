@@ -25,8 +25,7 @@ public class CharManager : MonoBehaviour {
 
     public List<Character>[] m_teamChar;
     public List<MeshRenderer>[] m_teamMesh;
-    public List<Animator>[] m_teamAnim;
-    public List<SkeletonAnimator>[] m_teamSkeleton;
+    public List<SkeletonAnimation>[] m_teamSkeleton;
 
     public bool m_isLeftSide;
 
@@ -37,9 +36,7 @@ public class CharManager : MonoBehaviour {
 
         m_teamMesh = new List<MeshRenderer>[] { new List<MeshRenderer>(), new List<MeshRenderer>() };
 
-        m_teamAnim = new List<Animator>[] { new List<Animator>(), new List<Animator>()};
-
-        m_teamSkeleton = new List<SkeletonAnimator>[] { new List<SkeletonAnimator>(), new List<SkeletonAnimator>() };
+        m_teamSkeleton = new List<SkeletonAnimation>[] { new List<SkeletonAnimation>(), new List<SkeletonAnimation>() };
         
 
         m_timeBarManager.m_barIconList = new List<BarIcons>();
@@ -61,8 +58,7 @@ public class CharManager : MonoBehaviour {
                 GameObject obj = Instantiate(m_defaultCharacter) as GameObject;
                 m_teamChar[j].Add(obj.GetComponent<Character>());
                 m_teamMesh[j].Add(obj.GetComponent<MeshRenderer>());
-                m_teamAnim[j].Add(obj.GetComponent<Animator>());
-                m_teamSkeleton[j].Add(obj.GetComponent<SkeletonAnimator>());
+                m_teamSkeleton[j].Add(obj.GetComponent<SkeletonAnimation>());
 
 
                 obj.name = j.ToString() + i.ToString();
@@ -144,17 +140,10 @@ public class CharManager : MonoBehaviour {
                     temp2.Move();
                     temp2.Action();
 
-                    //MeshRenderer
-                   // m_teamMesh[j][i].material = Resources.Load<Material>("SpineData/" + DataManager.Instance.m_teamData[j][i][0] + "_Material");
-     //               m_teamMesh[j][i].sortingLayerName = "Character";
-     //               m_teamMesh[j][i].sortingOrder = 1;
-
-                    //Animator
-                    m_teamAnim[j][i].runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("SpineData/" + DataManager.Instance.m_teamData[j][i][0] + "_Controller");
-
-                    //Skeleton Animator
+                    //Skeleton Animation
                     m_teamSkeleton[j][i].skeletonDataAsset = Resources.Load<SkeletonDataAsset>("SpineData/" + DataManager.Instance.m_teamData[j][i][0] + "_SkeletonData");
                     m_teamSkeleton[j][i].Initialize(true);
+                    m_teamSkeleton[j][i].AnimationName = "stand";
 
                     //Skill
                     m_teamChar[j][i].m_skills = new Skill[3];
