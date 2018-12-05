@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeBarManager : MonoBehaviour {
+public class TimeBarManager : SingletonMonoBehaviour<TimeBarManager> {
 
     [SerializeField]
     GameObject m_iconPrefab;

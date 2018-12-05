@@ -1,0 +1,153 @@
+
+char3.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+L_elbow
+  rotate: true
+  xy: 321, 223
+  size: 303, 190
+  orig: 303, 190
+  offset: 0, 0
+  index: -1
+L_leg
+  rotate: false
+  xy: 462, 565
+  size: 439, 761
+  orig: 439, 761
+  offset: 0, 0
+  index: -1
+R_elbow
+  rotate: false
+  xy: 1225, 1140
+  size: 129, 191
+  orig: 129, 191
+  offset: 0, 0
+  index: -1
+R_hand
+  rotate: false
+  xy: 901, 565
+  size: 82, 141
+  orig: 82, 141
+  offset: 0, 0
+  index: -1
+R_leg
+  rotate: false
+  xy: 0, 526
+  size: 462, 800
+  orig: 462, 800
+  offset: 0, 0
+  index: -1
+chest1
+  rotate: true
+  xy: 901, 706
+  size: 174, 124
+  orig: 174, 124
+  offset: 0, 0
+  index: -1
+chest2
+  rotate: false
+  xy: 1029, 1331
+  size: 421, 281
+  orig: 421, 281
+  offset: 0, 0
+  index: -1
+chest_strap1
+  rotate: false
+  xy: 1459, 1184
+  size: 86, 159
+  orig: 86, 159
+  offset: 0, 0
+  index: -1
+chest_strap2
+  rotate: false
+  xy: 901, 880
+  size: 137, 212
+  orig: 137, 212
+  offset: 0, 0
+  index: -1
+hair_1
+  rotate: false
+  xy: 1781, 1617
+  size: 227, 390
+  orig: 227, 390
+  offset: 0, 0
+  index: -1
+hair_2
+  rotate: true
+  xy: 1450, 1343
+  size: 58, 178
+  orig: 58, 178
+  offset: 0, 0
+  index: -1
+hair_3
+  rotate: true
+  xy: 1060, 1612
+  size: 395, 721
+  orig: 395, 721
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 321, 0
+  size: 188, 223
+  orig: 188, 223
+  offset: 0, 0
+  index: -1
+skirt
+  rotate: true
+  xy: 0, 3
+  size: 523, 321
+  orig: 523, 321
+  offset: 0, 0
+  index: -1
+skirt_acc1
+  rotate: false
+  xy: 1055, 1132
+  size: 170, 199
+  orig: 170, 199
+  offset: 0, 0
+  index: -1
+skirt_acc2
+  rotate: false
+  xy: 1826, 1393
+  size: 168, 224
+  orig: 168, 224
+  offset: 0, 0
+  index: -1
+skirt_back
+  rotate: true
+  xy: 901, 1092
+  size: 234, 154
+  orig: 234, 154
+  offset: 0, 0
+  index: -1
+sword_blade
+  rotate: false
+  xy: 0, 1326
+  size: 1029, 327
+  orig: 1029, 327
+  offset: 0, 0
+  index: -1
+sword_blade1
+  rotate: true
+  xy: 1354, 1140
+  size: 191, 105
+  orig: 191, 105
+  offset: 0, 0
+  index: -1
+sword_hilt
+  rotate: false
+  xy: 1450, 1401
+  size: 376, 211
+  orig: 376, 211
+  offset: 0, 0
+  index: -1
+sword_sheath
+  rotate: false
+  xy: 0, 1653
+  size: 1060, 354
+  orig: 1060, 354
+  offset: 0, 0
+  index: -1

@@ -2,24 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleManager : MonoBehaviour {
+public class BattleManager : SingletonMonoBehaviour<BattleManager> {
 
-
-    [SerializeField]
-    CharManager m_charManager;
-
-    [SerializeField]
-    TimeBarManager m_timeBarManager;
 
     [SerializeField]
     Character m_target;
-
     [SerializeField]
     Character m_myTurn;
 
     List<Character> m_charOnAction;
 
-    enum BattleState {
+    public enum BattleState {
         battleWaiting = 0,
         battleThinking,
         battleShowing,
@@ -32,28 +25,45 @@ public class BattleManager : MonoBehaviour {
         Skill3
     }
 
-    BattleState m_battleSt;
+    public BattleState m_battleSt;
     public SkillState m_SKillSt;
+
+
+
+    //response
+    public void CharacterClicked(Character target)
+    {
+        Debug.Log("??");
+        ChangeTarget(target);
+    }
 
     public void ChangeTarget(Character target)
     {
         m_target = target;
     }
 
+    public void SkillFinished()
+    {
+        m_battleSt = BattleState.battleWaiting;
+    }
+
+
+    //Related to State
     public void MyTurn(Character character)
     {
         m_myTurn = character;
         m_battleSt = BattleState.battleThinking;
-    }
-
-    public void CharacterClicked(Character target)
-    {
-        ChangeTarget(target);
+        m_myTurn.m_animation.AnimationName = "stand_ready";
     }
 
     public void OnActionList(Character character)
     {
         m_charOnAction.Add(character);
+    }
+
+    public void ActivateSkill() // ActiveSKill
+    {
+        m_myTurn.m_skills[(int)m_SKillSt].Activating(m_target, true);
     }
 
 	// Use this for initialization
@@ -80,16 +90,16 @@ public class BattleManager : MonoBehaviour {
                         break;
                     }
                     for (int j = 0; j < 2; j++) {
-                        for (int i = 0; i < m_charManager.m_teamChar[j].Count; i++)
+                        for (int i = 0; i < CharManager.Instance.m_teamChar[j].Count; i++)
                         {
-                            m_charManager.m_teamChar[j][i].m_action += m_charManager.m_teamChar[j][i].m_speed * Time.deltaTime * 0.1f;
-                            if (m_charManager.m_teamChar[j][i].m_action >= 100f) m_charOnAction.Add(m_charManager.m_teamChar[j][i]);
+                            CharManager.Instance.m_teamChar[j][i].m_action += CharManager.Instance.m_teamChar[j][i].m_speed * Time.deltaTime * 0.3f;
+                            if (CharManager.Instance.m_teamChar[j][i].m_action >= 100f) m_charOnAction.Add(CharManager.Instance.m_teamChar[j][i]);
 
                         }
                     }
-                    for (int i = 0; i < m_timeBarManager.m_barIconList.Count; i++)
+                    for (int i = 0; i < TimeBarManager.Instance.m_barIconList.Count; i++)
                     {
-                        m_timeBarManager.m_barIconList[i].Action();
+                        TimeBarManager.Instance.m_barIconList[i].Action();
                     }
                     break;
                 }

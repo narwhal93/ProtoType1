@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class DataManager : SingletonMonoBehaviour<DataManager> {
+public class DataManager : DontDestroy<DataManager> {
 
     //Global Data
     [SerializeField]

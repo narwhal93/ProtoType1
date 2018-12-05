@@ -5,20 +5,15 @@ using Spine.Unity;
 using System;
 
 
-public class CharManager : MonoBehaviour {
+public class CharManager : SingletonMonoBehaviour<CharManager> {
 
-    [SerializeField]
-    BattleManager m_battleManager;
     [SerializeField]
     GameObject m_LeftParent;
     [SerializeField]
     GameObject m_RightParent;
     [SerializeField]
     GameObject m_defaultCharacter;
-    [SerializeField]
-    TimeBarManager m_timeBarManager;
-    [SerializeField]
-    HpBarManager m_hpBarManager;
+
 
     Vector3[] m_leftPosition = new Vector3[] { new Vector3(-230, -25, -6), new Vector3(-320,60,-6), new Vector3(-360,-120,-6), new Vector3(-450,-25,-6)};
     Vector3[] m_rightPosition = new Vector3[] { new Vector3(230, -25, -6), new Vector3(320, 60, -6), new Vector3(360, -120, -6), new Vector3(450, -25, -6)};
@@ -37,16 +32,18 @@ public class CharManager : MonoBehaviour {
         m_teamMesh = new List<MeshRenderer>[] { new List<MeshRenderer>(), new List<MeshRenderer>() };
 
         m_teamSkeleton = new List<SkeletonAnimation>[] { new List<SkeletonAnimation>(), new List<SkeletonAnimation>() };
-        
 
-        m_timeBarManager.m_barIconList = new List<BarIcons>();
-        m_hpBarManager.m_hpBarIconList = new List<HpBar>();
+        SkillManager.Instance.m_addtionalAttack = new List<Skill>();
+        SkillManager.Instance.m_Counter = new List<Skill>();
+
+        TimeBarManager.Instance.m_barIconList = new List<BarIcons>();
+        HpBarManager.Instance.m_hpBarIconList = new List<HpBar>();
 
         m_isLeftSide = true;
 
         MakeCharacter();
-        m_timeBarManager.MakeIcons();
-        m_hpBarManager.MakeIcons();
+        TimeBarManager.Instance.MakeIcons();
+        HpBarManager.Instance.MakeIcons();
         SetCharacterData();
     }
 
@@ -119,12 +116,18 @@ public class CharManager : MonoBehaviour {
                     m_teamChar[j][i].m_coopChance = int.Parse(data_values[14]);
                     m_teamChar[j][i].m_comboChance = int.Parse(data_values[15]);
 
-                    m_teamChar[j][i].m_battleManager = m_battleManager;
                     m_teamChar[j][i].m_hp = m_teamChar[j][i].m_maxHp;
                     m_teamChar[j][i].m_action = 0f;
 
+                    if (m_isLeftSide ^ j == 0)
+                    {
+                        m_teamChar[j][i].m_side = false; // right Character;
+                    }
+                    else m_teamChar[j][i].m_side = true; // left Character;
+
+
                     //BarIcon
-                    BarIcons temp = m_timeBarManager.m_barIconList[i+j*DataManager.Instance.m_charNumPerTeam];
+                    BarIcons temp = TimeBarManager.Instance.m_barIconList[i+j*DataManager.Instance.m_charNumPerTeam];
                     temp.SetTarget(m_teamChar[j][i]);
                     temp.name += m_teamChar[j][i].name;
                     temp.gameObject.SetActive(true);
@@ -132,7 +135,7 @@ public class CharManager : MonoBehaviour {
                     m_teamChar[j][i].m_barIcon = temp;
 
                     //HpBar
-                    HpBar temp2 = m_hpBarManager.m_hpBarIconList[i + j * DataManager.Instance.m_charNumPerTeam];
+                    HpBar temp2 = HpBarManager.Instance.m_hpBarIconList[i + j * DataManager.Instance.m_charNumPerTeam];
                     temp2.SetTarget(m_teamChar[j][i]);
                     temp2.name += m_teamChar[j][i].name;
                     temp2.gameObject.SetActive(true);
@@ -143,7 +146,9 @@ public class CharManager : MonoBehaviour {
                     //Skeleton Animation
                     m_teamSkeleton[j][i].skeletonDataAsset = Resources.Load<SkeletonDataAsset>("SpineData/" + DataManager.Instance.m_teamData[j][i][0] + "_SkeletonData");
                     m_teamSkeleton[j][i].Initialize(true);
+                    m_teamSkeleton[j][i].loop = true;
                     m_teamSkeleton[j][i].AnimationName = "stand";
+                    m_teamChar[j][i].m_animation = m_teamSkeleton[j][i];
 
                     //Skill
                     m_teamChar[j][i].m_skills = new Skill[3];
@@ -153,7 +158,6 @@ public class CharManager : MonoBehaviour {
                         Skill tempSkill = (Skill)m_teamChar[j][i].gameObject.AddComponent(Type.GetType(tempstring));
                         m_teamChar[j][i].m_skills[k] = tempSkill;
                         tempSkill.m_userCharacter = m_teamChar[j][i];
-                        tempSkill.m_animator = this.gameObject.GetComponent<Animator>();
                     }
                 }
             }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HpBarManager : MonoBehaviour {
+public class HpBarManager : SingletonMonoBehaviour<HpBarManager> {
 
     [SerializeField]
     GameObject m_hpBarPrefab;

@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 
 public class Character : MonoBehaviour {
 
     [SerializeField]
     public Skill[] m_skills;
 
-    public BattleManager m_battleManager;
+    public SkeletonAnimation m_animation;
 
     public BarIcons m_barIcon;
     public HpBar m_hpBar;
@@ -38,6 +39,7 @@ public class Character : MonoBehaviour {
 
     public float m_action;
     public float m_hp;
+    public bool m_side;
 
     public void ResetData() {
 
@@ -45,8 +47,8 @@ public class Character : MonoBehaviour {
 
     void OnMouseDown()
     {
-        m_battleManager.CharacterClicked(this);
-        Debug.Log("?");
+        Debug.Log("??");
+        BattleManager.Instance.CharacterClicked(this);
     }
 
 }

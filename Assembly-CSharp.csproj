@@ -56,11 +56,16 @@
      <Compile Include="Assets\Scripts\IntheBattle\BarIcons.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Character.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\HpBar.cs" />
+     <Compile Include="Assets\Scripts\IntheBattle\Skills\ActivateSkill.cs" />
+     <Compile Include="Assets\Scripts\IntheBattle\Skills\GiveDamage\DoNothing.cs" />
+     <Compile Include="Assets\Scripts\IntheBattle\Skills\GiveDamage\DoSomething.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\Skill.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\Skill1.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\Skill2.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\Skill3.cs" />
+     <Compile Include="Assets\Scripts\IntheBattle\Skills\SkillManager.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\SkillReporter.cs" />
+     <Compile Include="Assets\Scripts\IntheBattle\Skills\SkillSample.cs" />
      <Compile Include="Assets\Scripts\Manager\BattleManager.cs" />
      <Compile Include="Assets\Scripts\Manager\CharManager.cs" />
      <Compile Include="Assets\Scripts\Manager\DataManager.cs" />
@@ -73,7 +78,6 @@
      <Compile Include="Assets\Scripts\Utils\Singleton.cs" />
      <Compile Include="Assets\Scripts\Utils\SingletonMonoBehaviour.cs" />
      <Compile Include="Assets\Scripts\Utils\Util.cs" />
-     <Compile Include="Assets\test.cs" />
      <Compile Include="Assets\Tool\spine-csharp\Properties\AssemblyInfo.cs" />
      <Compile Include="Assets\Tool\spine-csharp\src\Animation.cs" />
      <Compile Include="Assets\Tool\spine-csharp\src\AnimationState.cs" />
@@ -233,7 +237,6 @@
      <None Include="Assets\Tool\spine-unity\Assets\Spine Examples\Spine\Hero\hero-mesh.atlas.txt" />
      <None Include="Assets\Tool\spine-unity\Assets\Spine Examples\Spine\Dragon\license.txt" />
      <None Include="Assets\Tool\spine-unity\Assets\spine-unity\Modules\Shaders\Straight Alpha\Spine-Straight-Skeleton-Tint.shader" />
-     <None Include="Assets\Resources\SpineData\baldo_1.atlas.txt" />
      <None Include="Assets\Tool\spine-unity\Assets\Spine Examples\Spine\Hero\license.txt" />
      <None Include="Assets\Tool\spine-unity\Assets\Spine Examples\Spine\Goblins\goblins.atlas.txt" />
      <None Include="Assets\Tool\spine-unity\Assets\Spine Examples\Spine\Strechyman\stretchyman-diffuse-pma.atlas.txt" />
@@ -267,6 +270,7 @@
      <None Include="Assets\Tool\spine-unity\Assets\Spine Examples\Spine\Hero\hero-pro.atlas.txt" />
      <None Include="Assets\Tool\spine-unity\Assets\spine-unity\Modules\Shaders\Sprite\CGIncludes\ShaderMaths.cginc" />
      <None Include="Assets\Tool\spine-unity\Assets\spine-unity\Modules\SkeletonRenderSeparator\SkeletonRenderSeparator.txt" />
+     <None Include="Assets\Resources\SpineData\char3.atlas.txt" />
      <None Include="Assets\Tool\spine-unity\Assets\spine-unity\Modules\Shaders\Sprite\SpriteDepthNormalsTexture.shader" />
      <None Include="Assets\Tool\spine-unity\Assets\spine-unity\Shaders\Spine-SkeletonLit.shader" />
      <None Include="Assets\Tool\spine-unity\Assets\spine-unity\Modules\Shaders\Sprite\CGIncludes\SpriteSpecular.cginc" />

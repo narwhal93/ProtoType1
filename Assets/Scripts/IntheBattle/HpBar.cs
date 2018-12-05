@@ -5,14 +5,10 @@ using UnityEngine.UI;
 
 public class HpBar : MonoBehaviour {
 
-    Character m_target;
+    [SerializeField]
+    public Character m_target;
     [SerializeField]
     Slider m_slider;
-
-    public void Start()
-    {
-        m_target = null;
-    }
 
     public void SetTarget(Character target)
     {

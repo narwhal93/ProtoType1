@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 
 public class Skill : MonoBehaviour{
 
     public Character m_target;
     public Character m_userCharacter;
-    public Animator m_animator;
 
-    public virtual void Activating(Character target)
+    public virtual void Activating(Character target, bool inputStyle_AorP)
     {
-        Debug.Log("Skill's skill");
+        m_target = target;
     }
 }
