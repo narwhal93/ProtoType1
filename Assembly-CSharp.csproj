@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\IntheBattle\Character.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\HpBar.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\ActivateSkill.cs" />
+     <Compile Include="Assets\Scripts\IntheBattle\Skills\Combo.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\GiveDamage\DoNothing.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\GiveDamage\DoSomething.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\Skill.cs" />

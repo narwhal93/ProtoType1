@@ -10,4 +10,5 @@ public class ActivateSkill : MonoBehaviour {
     {
         m_battleManager.ActivateSkill();
     }
+
 }

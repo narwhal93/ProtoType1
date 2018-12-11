@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_skills: []
-  m_battleManager: {fileID: 0}
+  m_animation: {fileID: 0}
   m_barIcon: {fileID: 0}
   m_hpBar: {fileID: 0}
   m_class: 0
@@ -140,6 +140,7 @@ MonoBehaviour:
   m_comboChance: 0
   m_action: 0
   m_hp: 0
+  m_side: 0
 --- !u!114 &114348183770053230
 MonoBehaviour:
   m_ObjectHideFlags: 1

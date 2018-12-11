@@ -33,8 +33,8 @@ public class CharManager : SingletonMonoBehaviour<CharManager> {
 
         m_teamSkeleton = new List<SkeletonAnimation>[] { new List<SkeletonAnimation>(), new List<SkeletonAnimation>() };
 
-        SkillManager.Instance.m_addtionalAttack = new List<Skill>();
-        SkillManager.Instance.m_Counter = new List<Skill>();
+        SkillManager.Instance.m_addtionalAttack = new List<Skill>[] {new List<Skill>(), new List<Skill>() };
+        SkillManager.Instance.m_revenge = new List<Skill>[] { new List<Skill>(), new List<Skill>() };
 
         TimeBarManager.Instance.m_barIconList = new List<BarIcons>();
         HpBarManager.Instance.m_hpBarIconList = new List<HpBar>();
@@ -151,13 +151,14 @@ public class CharManager : SingletonMonoBehaviour<CharManager> {
                     m_teamChar[j][i].m_animation = m_teamSkeleton[j][i];
 
                     //Skill
-                    m_teamChar[j][i].m_skills = new Skill[3];
-                    for (int k = 0; k < 3; k++)
+                    m_teamChar[j][i].m_skills = new Skill[4];
+                    for (int k = 0; k < 4; k++)
                     {
                         string tempstring = "Skill" + int.Parse(data_values[16 + k]);
                         Skill tempSkill = (Skill)m_teamChar[j][i].gameObject.AddComponent(Type.GetType(tempstring));
                         m_teamChar[j][i].m_skills[k] = tempSkill;
-                        tempSkill.m_userCharacter = m_teamChar[j][i];
+                        tempSkill.m_user = m_teamChar[j][i];
+                        tempSkill.Init();
                     }
                 }
             }
