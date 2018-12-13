@@ -28,4 +28,17 @@ public class Skill : MonoBehaviour{
     {
 
     }
+
+    [System.Serializable]
+    public class Damage : System.Object
+    {
+        public int damage;
+
+        public void GiveDamage(Character target, Character user)
+        {
+            target.m_hp -= user.m_attack * damage;
+            target.m_hpBar.Action();
+        }
+    }
+
 }

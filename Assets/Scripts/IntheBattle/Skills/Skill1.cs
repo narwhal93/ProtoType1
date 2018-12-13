@@ -23,6 +23,8 @@ public class Skill1 : Skill {
     object m_attackTime;
     [SerializeField]
     int[] m_IStrikeFrame;  // For Designer
+    [SerializeField]
+    Damage[] m_IDamage;
     object[] m_strikeFrame;
 
     [SerializeField]
@@ -137,30 +139,14 @@ public class Skill1 : Skill {
             {
                 yield return new WaitForEndOfFrame();
             }
-            StartCoroutine("Damage" + (j+1).ToString());
+            m_IDamage[j].GiveDamage(m_target, m_user);
         }
         m_user.m_animation.AnimationName = "jump_back";
         StartCoroutine("Jump_back", m_move);
         m_move[3] = 0;
         yield return null;
     }
-
-    IEnumerator Damage1()
-    {
-        m_target.m_hp -= m_user.m_attack;
-        m_target.m_hpBar.Action();
-        yield return null;
-    }
-
-    IEnumerator Damage2()
-    {
-        m_target.m_hp -= m_user.m_attack*10;
-        m_target.m_hpBar.Action();
-        yield return null;
-    }
-
 }
-
 
 [System.Serializable]
 class Combo : System.Object
