@@ -1,71 +1,67 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Skill1 : Skill {
 
-    [SerializeField]
-    SkillManager.SkillType m_SkillType = SkillManager.SkillType.Active;
-
-    [SerializeField]
-    int m_skillPlace;
-    [SerializeField]
-    bool m_attackORAssist;
-    [SerializeField]
-    bool m_IsTargeting;
-    [SerializeField]
-    int m_targetNum;
-    [SerializeField]
-    int m_jumpFrame;
     object[] m_move;
-    [SerializeField]
-    int m_IAttackTime;  // For Designer
+
     object m_attackTime;
-    [SerializeField]
-    int[] m_IStrikeFrame;  // For Designer
-    [SerializeField]
-    Damage[] m_IDamage;
+
     object[] m_strikeFrame;
 
-    [SerializeField]
-    Combo[] ccmcmcmc;
 
+    
     // Activating -> Jump -> attack -> strike or hit -> Jump back
 
     public override void Init()
     {
-    m_skillPlace = 1;
-    m_attackORAssist = true;
-    m_cooperation = false;
-    m_combo = false;
-    m_IsTargeting = true;
-    m_targetNum = 1;
-    m_jumpFrame = 40;
-    m_IAttackTime = 40;  // For Designer
-    m_IStrikeFrame = new int[2]{ 35, 90 };  // For Designer
-    }
+        m_skillIndex = 1;
+        m_skillNumber = 1;
+        m_skillType = SkillManager.SkillType.Active;
+        m_skillName = "ttt";
+        m_targetNum = 1;
 
-    public override void Activating(Character target, SkillManager.SkillType inputStyle_AorP)
+        m_IDamage = new Damage[] { new Damage(1), new Damage(2) };
+
+        m_jumpFrame = 40;
+        m_IAttackFrame = 40;  
+        m_IStrikeFrame = new int[2]{ 35, 90 }; 
+
+        m_jumpAnimation = "jump";
+        m_jumpBackAnimation = "Jump_back";
+        m_attackAnimation = "skill_1";
+        m_strikeAnimation = "attack";
+
+        m_comboJumpAnimation = "jump";
+        m_comboJumpBackAnimation = "Jump_back";
+        m_comboAttackAnimation  = "skill_1";
+        m_comboStrikeAnimation  = "attack";
+}
+
+    public override void Activating(Character target, SkillManager.SkillType SkillType)
     {
-        // For Designer. 
-        m_attackTime = m_IAttackTime;
-        m_strikeFrame = new object[m_IStrikeFrame.Length];
-        for (int i = 0; i < m_IStrikeFrame.Length; i++)
+        if (m_skillType == SkillType || SkillType == SkillManager.SkillType.Revenge)
         {
-            m_strikeFrame[i] = m_IStrikeFrame[i];
-        }
+ 
+            m_attackTime = m_IAttackFrame;
+            m_strikeFrame = new object[m_IStrikeFrame.Length];
+            for (int i = 0; i < m_IStrikeFrame.Length; i++)
+            {
+                m_strikeFrame[i] = m_IStrikeFrame[i];
+            }
 
-        base.Activating(target, inputStyle_AorP);
-        if (m_SkillType == inputStyle_AorP)
-        {
-            if (m_attackORAssist ^ (m_user.m_side == m_target.m_side))
+            base.Activating(target, SkillType);
+
+            if ((m_skillType == SkillManager.SkillType.Active) ^ (m_user.m_side == m_target.m_side))
             {
                 BattleManager.Instance.m_battleSt = BattleManager.BattleState.battleShowing;
                 m_user.m_animation.loop = false;
-                m_user.m_animation.AnimationName = "jump";
+                m_user.m_animation.AnimationName = m_jumpAnimation;
                 Vector3 temp = new Vector3();
-                if (target.m_side == true) temp = ((m_target.transform.position + new Vector3(150f, 0f, 0f)) - this.gameObject.transform.position) / 40;
-                else temp = ((m_target.transform.position + new Vector3(-150f, 0f, 0f)) - this.gameObject.transform.position) / 40;
+                if (target.m_side == true) temp = ((m_target.transform.position + new Vector3(150f, 0f, 0f)) - this.gameObject.transform.position) / m_jumpFrame;
+                else temp = ((m_target.transform.position + new Vector3(-150f, 0f, 0f)) - this.gameObject.transform.position) / m_jumpFrame;
                 m_move = new object[] { temp.x, temp.y, temp.z, 0 };
                 StartCoroutine("Jump", m_move);
             }
@@ -111,7 +107,7 @@ public class Skill1 : Skill {
         {
             m_user.m_animation.loop = true;
             m_user.m_animation.AnimationName = "stand";
-            BattleManager.Instance.StartCoroutine("ActiveSkillFinished");
+            
             m_user.m_action = 0;
             m_user.m_barIcon.Action();
         }
@@ -121,12 +117,12 @@ public class Skill1 : Skill {
 
     IEnumerator Attack(object attackFrame)
     {
-        m_user.m_animation.AnimationName = "skill_1";
+        m_user.m_animation.AnimationName = m_attackAnimation;
         for (int i = 0; i < (int)attackFrame; i++)
         {
             yield return new WaitForEndOfFrame();
         }
-        if(m_user.m_animation.AnimationName == "skill_1")
+        if(m_user.m_animation.AnimationName == m_attackAnimation)
         StartCoroutine("Strike", m_strikeFrame);
     }
 
@@ -141,16 +137,12 @@ public class Skill1 : Skill {
             }
             m_IDamage[j].GiveDamage(m_target, m_user);
         }
-        m_user.m_animation.AnimationName = "jump_back";
+        m_user.m_animation.AnimationName = m_jumpBackAnimation;
         StartCoroutine("Jump_back", m_move);
         m_move[3] = 0;
         yield return null;
     }
+
+
 }
 
-[System.Serializable]
-class Combo : System.Object
-{
-    public int no = 3;
-    public int please = 3;
-}

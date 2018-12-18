@@ -42,14 +42,6 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager> {
         m_target = target;
     }
 
-    IEnumerator ActiveSkillFinished()
-    {
-        object temp = (object)m_myTurn;
-        yield return StartCoroutine("CheckReaction", temp);
-        yield return null;
-    }
-
-
     //Related to turn
     public void MyTurn(Character character)
     {
@@ -69,12 +61,6 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager> {
     public void ActivateSkill() 
     {
         m_myTurn.m_skills[(int)m_SKillSt].Activating(m_target, SkillManager.SkillType.Active);
-    }
-
-    IEnumerator CheckReaction(object user)
-    {
-        
-        yield return null;
     }
 
 

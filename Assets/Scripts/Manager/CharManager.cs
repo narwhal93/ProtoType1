@@ -7,7 +7,7 @@ using System;
 
 public class CharManager : SingletonMonoBehaviour<CharManager> {
 
-    [SerializeField]
+    [SerializeField] 
     GameObject m_LeftParent;
     [SerializeField]
     GameObject m_RightParent;
@@ -164,4 +164,5 @@ public class CharManager : SingletonMonoBehaviour<CharManager> {
             }
         }
     }
+
 }

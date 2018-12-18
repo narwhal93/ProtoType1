@@ -8,6 +8,8 @@ public class Character : MonoBehaviour {
     [SerializeField]
     public Skill[] m_skills;
 
+    
+
     public SkeletonAnimation m_animation;
 
     public BarIcons m_barIcon;

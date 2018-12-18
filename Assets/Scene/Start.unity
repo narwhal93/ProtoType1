@@ -578,6 +578,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca41873d69a3b554aa8dc87f4e901218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &738997608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 738997610}
+  - component: {fileID: 738997609}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &738997609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 738997608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de19d1336f66c3438ba4a7b7b697827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_skillIndex: 0
+  m_skillNumber: 0
+  m_skillType: 0
+  m_skillName: 
+  m_texture: 
+  m_skillText: 
+  m_skillTextAwaken: 
+  m_jumpFrame: 0
+  m_IAttackFrame: 0
+  m_IStrikeFrame: 
+  m_targetNum: 0
+  m_soulBurn: 0
+  m_jumpAnimation: 
+  m_jumpBackAnimation: 
+  m_attackAnimation: 
+  m_strikeAnimation: 
+  m_skillAwakening: 0
+  m_skillLevel: 0
+  m_coolDown: 0
+  m_curCoolDown: 0
+  m_IDamage: []
+  m_target: {fileID: 0}
+  m_user: {fileID: 0}
+  m_cooperation: 0
+  m_combo: 0
+  m_comboJumpFrame: 0
+  m_comboIAttackFrame: 0
+  m_comboIStrikeFrame: 
+  m_comboJumpAnimation: 
+  m_comboJumpBackAnimation: 
+  m_comboAttackAnimation: 
+  m_comboStrikeAnimation: 
+--- !u!4 &738997610
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 738997608}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 208.58641, y: 95.390656, z: -12.724999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &831481617
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class SkillManager : SingletonMonoBehaviour<SkillManager> {
     {
         Rush = 0,
         Active,
+        Passive,
         React,
         Revenge,
         AdditionalAttack
