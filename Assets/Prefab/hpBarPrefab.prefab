@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbf2662e9b109b45bd4b589cb88f6bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_target: {fileID: 0}
   m_slider: {fileID: 114268627981759924}
 --- !u!114 &114867084861206288
 MonoBehaviour:
@@ -248,7 +249,7 @@ RectTransform:
   m_GameObject: {fileID: 1278725883759430}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 1.2, z: 1}
   m_Children:
   - {fileID: 224959493492065978}
   - {fileID: 224201623393897362}

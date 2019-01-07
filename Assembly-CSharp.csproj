@@ -54,11 +54,10 @@
      <Compile Include="Assets\Scripts\Buttons\Loading.cs" />
      <Compile Include="Assets\Scripts\Buttons\StartButtons.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\BarIcons.cs" />
-     <Compile Include="Assets\Scripts\IntheBattle\Buff\Buff.cs" />
+     <Compile Include="Assets\Scripts\IntheBattle\Buff.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Character.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\HpBar.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\ActivateSkill.cs" />
-     <Compile Include="Assets\Scripts\IntheBattle\Skills\Combo.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\Skill.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\Skill1.cs" />
      <Compile Include="Assets\Scripts\IntheBattle\Skills\Skill2.cs" />

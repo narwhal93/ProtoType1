@@ -11,8 +11,6 @@ public class Skill1 : Skill {
 
     object[] m_strikeFrame;
 
-
-    
     // Activating -> Jump -> attack -> strike or hit -> Jump back
 
     public override void Init()
@@ -23,11 +21,11 @@ public class Skill1 : Skill {
         m_skillName = "ttt";
         m_targetNum = 1;
 
-        m_IDamage = new Damage[] { new Damage(1), new Damage(2) };
-
         m_jumpFrame = 40;
-        m_IAttackFrame = 40;  
-        m_IStrikeFrame = new int[2]{ 35, 90 }; 
+        m_IAttackFrame = 40;
+        m_IStrikeFrame = new int[2] { 35, 90 };
+        m_IDamage = new Damage[] { new Damage(1f, new GiveBuff[1]{new GiveBuff(Buff.BuffType.Nothing, Buff.ActionTiming.GiveDamage, 0, true, 1, 0)}), 
+                                   new Damage(1f, new GiveBuff[0])};
 
         m_jumpAnimation = "jump";
         m_jumpBackAnimation = "Jump_back";
@@ -38,6 +36,8 @@ public class Skill1 : Skill {
         m_comboJumpBackAnimation = "Jump_back";
         m_comboAttackAnimation  = "skill_1";
         m_comboStrikeAnimation  = "attack";
+
+
 }
 
     public override void Activating(Character target, SkillManager.SkillType SkillType)
@@ -142,7 +142,6 @@ public class Skill1 : Skill {
         m_move[3] = 0;
         yield return null;
     }
-
 
 }
 

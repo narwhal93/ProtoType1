@@ -8,7 +8,8 @@ public class Character : MonoBehaviour {
     [SerializeField]
     public Skill[] m_skills;
 
-    
+    [SerializeField]
+    public List<Buff> m_buff;
 
     public SkeletonAnimation m_animation;
 
@@ -43,6 +44,22 @@ public class Character : MonoBehaviour {
     public float m_hp;
     public bool m_side;
 
+    public void ActivateBuff(Buff.ActionTiming tim)
+    {
+        for (int i = 0; i < m_buff.Count; i++)
+        {
+            m_buff[i].Action(tim);
+        }
+    }
+
+    public void MoveBuff()
+    {
+        for(int i = 0; i < m_buff.Count; i++)
+        {
+            m_buff[i].Move(i);
+        }
+    }
+
     public void ResetData() {
 
     }
@@ -52,5 +69,7 @@ public class Character : MonoBehaviour {
         Debug.Log("??");
         BattleManager.Instance.CharacterClicked(this);
     }
+
+   
 
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HpBar : MonoBehaviour {
 
     [SerializeField]
-    public Character m_target;
+    Character m_target;
     [SerializeField]
     Slider m_slider;
 

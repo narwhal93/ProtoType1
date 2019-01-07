@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
+[System.Serializable]
 public class Skill : MonoBehaviour{
+
+    string Json;
 
     // Static
     public int m_skillIndex;
@@ -70,80 +73,77 @@ public class Skill : MonoBehaviour{
 
     public void MakeScript()
     {
-        StreamWriter strWriter = new StreamWriter(Application.dataPath + "/Scripts/IntheBattle/Skills/" + m_skillName + ".cs");
-        strWriter.WriteLine(@"using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-
-public class Skill1 : Skill {
-
-    object[] m_move;
-
-    object m_attackTime;
-
-    object[] m_strikeFrame;
-
-    
-
-    // Activating -> Jump -> attack -> strike or hit -> Jump back
-
-    [HideInInspector]
-    public string m_comboJumpAnimation;
-    [HideInInspector]
-    public string m_comboJumpBackAnimation;
-    [HideInInspector]
-    public string m_comboAttackAnimation;
-    [HideInInspector]
-    public string m_comboStrikeAnimation;
-
-    public override void Init()
-    {
-        m_skillIndex = " + m_skillIndex + @";
-        m_skillNumber = " + m_skillNumber + @";
-        m_skillType = SkillManager.SkillType." + m_skillType + @";
-        m_skillName =   "+"\"" + m_skillName + "\"" +@";
-        m_targetNum = " + m_targetNum + @";
-
-        m_IDamage = new Damage[] { new Damage(1), new Damage(2) };
-
-        m_jumpFrame = " + m_jumpFrame + @";
-        m_IAttackFrame = " + m_IAttackFrame 
-        + @";
-        m_IStrikeFrame = new int[2] { 35, 90 }; 
-
-        m_jumpAnimation = " + "\""+ m_jumpAnimation +"\"" + @";
-        m_jumpBackAnimation = "+ "\"" + m_jumpBackAnimation + "\"" + @";
-");
-        strWriter.Flush();
+        Json = JsonUtility.ToJson(this);
+        Debug.Log(Json);
     }
+
+    public void GetScript()
+    {
+        m_IDamage[0] = JsonUtility.FromJson<Damage>(Json);
+    }
+
 
     [System.Serializable]
     public class Damage : System.Object
     {
-        public int damage;
+        public float _basicDamage;
+        public float _damage;
+        public List<GiveBuff> _buffs;
 
-        public Damage(int dmg)
+        public Damage(float dmg, GiveBuff[] buffs )
         {
-            damage = dmg;
+            _damage = dmg;
+            _buffs = new List<GiveBuff>();
+            for (int i = 0; i < buffs.Length; i++)
+            {
+                _buffs.Add(buffs[i]);
+            }
+        }
+
+        public void AttachBuff(Character target)
+        {
+            for (int i = 0; i < _buffs.Count; i++)
+            {
+                if (_buffs[i].m_IsTagetEnemy)
+                {
+                    target.m_buff.Add(BuffManager.Instance.Buffs.Pop());
+                    target.m_buff[target.m_buff.Count - 1].gameObject.SetActive(true);
+                    target.m_buff[target.m_buff.Count - 1].SetUser(target);
+                    target.m_buff[target.m_buff.Count - 1].m_durationLeft = _buffs[i].m_buffturn;
+                    target.m_buff[target.m_buff.Count - 1].m_tim = _buffs[i].m_timing;
+                    target.m_buff[target.m_buff.Count - 1].m_type = _buffs[i].m_bufftype;
+                    target.m_buff[target.m_buff.Count - 1].m_extraParam = _buffs[i].m_extraParam;
+                }
+            }
+            target.MoveBuff();
         }
 
         public void GiveDamage(Character target, Character user)
         {
-            target.m_hp -= user.m_attack * damage;
+            target.m_hp -= user.m_attack * _damage + _basicDamage;
             target.m_hpBar.Action();
+            AttachBuff(target);
         }
-
     }
 
     [System.Serializable]
-    public class Combo : System.Object
+    public class GiveBuff : System.Object
     {
-        public int damage;
-
-        public Combo(int dmg)
+        public bool m_IsTagetEnemy;
+        public int m_targetNum;
+        public Buff.BuffType m_bufftype;
+        public Buff.ActionTiming m_timing;
+        public int m_buffturn;
+        public float m_extraParam;
+        
+        public GiveBuff(Buff.BuffType type, Buff.ActionTiming timing, int buffturn, bool target, int targetNum, float extraParam)
         {
-            damage = dmg;
+            m_bufftype = type;
+            m_timing = timing;
+            m_buffturn = buffturn;
+            m_IsTagetEnemy = target;
+            m_targetNum = targetNum;
+            m_extraParam = extraParam;
         }
     }
 }
@@ -157,18 +157,37 @@ public class SkillEditor : Editor
 
         Skill myScript = (Skill)target;
 
+        if (myScript.m_combo)
+        {
+            myScript.m_comboJumpFrame = EditorGUILayout.IntField("comboJumpFrame",myScript.m_comboJumpFrame);
+            myScript.m_comboIAttackFrame = EditorGUILayout.IntField("comboAttackFrame", myScript.m_comboIAttackFrame);
+            int m_comboStrikeLength = EditorGUILayout.IntField("comboIStrikeFrame", myScript.m_comboIStrikeFrame.Length);
+            if(myScript.m_comboIStrikeFrame.Length != m_comboStrikeLength) myScript.m_comboIStrikeFrame = new int[m_comboStrikeLength];
+
+            for (int i = 0; i < m_comboStrikeLength; i++)
+            {
+                myScript.m_comboIStrikeFrame[i] = EditorGUILayout.IntField("comboIStrikeFrame" + i.ToString(), myScript.m_comboIStrikeFrame[i]);
+            }
+            
+        }
+
         if (GUILayout.Button("Refresh"))
         {
             myScript.m_IDamage = new Skill.Damage[myScript.m_IStrikeFrame.Length];
             for (int i = 0; i < myScript.m_IStrikeFrame.Length; i++)
             {
-                myScript.m_IDamage[i] = new Skill.Damage(0);
+                myScript.m_IDamage[i] = new Skill.Damage(0, new Skill.GiveBuff[] { });
             }
         }
 
         if (GUILayout.Button("Make Script"))
         {
             myScript.MakeScript();
+        }
+
+        if (GUILayout.Button("Get Script"))
+        {
+            myScript.GetScript();
         }
     }
 }
