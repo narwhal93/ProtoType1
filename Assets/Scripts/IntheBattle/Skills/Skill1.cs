@@ -28,16 +28,14 @@ public class Skill1 : Skill {
                                    new Damage(1f, new GiveBuff[0])};
 
         m_jumpAnimation = "jump";
-        m_jumpBackAnimation = "Jump_back";
+        m_jumpBackAnimation = "jump_back";
         m_attackAnimation = "skill_1";
         m_strikeAnimation = "attack";
 
         m_comboJumpAnimation = "jump";
-        m_comboJumpBackAnimation = "Jump_back";
+        m_comboJumpBackAnimation = "jump_back";
         m_comboAttackAnimation  = "skill_1";
         m_comboStrikeAnimation  = "attack";
-
-
 }
 
     public override void Activating(Character target, SkillManager.SkillType SkillType)

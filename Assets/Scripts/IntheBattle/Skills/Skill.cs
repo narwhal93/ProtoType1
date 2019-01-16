@@ -60,7 +60,6 @@ public class Skill : MonoBehaviour{
     public string m_comboStrikeAnimation;
     // Combo Only
 
-
     public virtual void Activating(Character target, SkillManager.SkillType SkillType)
     {
         m_target = target;
@@ -75,11 +74,19 @@ public class Skill : MonoBehaviour{
     {
         Json = JsonUtility.ToJson(this);
         Debug.Log(Json);
+        StreamWriter strWriter = new StreamWriter(Application.dataPath + "/Data/Skills" + m_skillIndex);
+        strWriter.WriteLine(Json);
+        strWriter.Close();
     }
 
     public void GetScript()
     {
-        m_IDamage[0] = JsonUtility.FromJson<Damage>(Json);
+        StreamReader strReader = new StreamReader(Application.dataPath + "/Data/Skills" + m_skillIndex);
+        string strData = strReader.ReadLine();
+        strReader.Close();
+        Debug.Log(strData);
+        Skill temp = this;
+        JsonUtility.FromJsonOverwrite(strData, temp);
     }
 
 
