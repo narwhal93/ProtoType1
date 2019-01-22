@@ -151,14 +151,19 @@ public class CharManager : SingletonMonoBehaviour<CharManager> {
                     m_teamChar[j][i].m_animation = m_teamSkeleton[j][i];
 
                     //Skill
-                    m_teamChar[j][i].m_skills = new Skill[4];
+                    //m_teamChar[j][i].m_skills = new Skill[4];
                     for (int k = 0; k < 4; k++)
                     {
-                        string tempstring = "Skill" + int.Parse(data_values[16 + k]);
-                        Skill tempSkill = (Skill)m_teamChar[j][i].gameObject.AddComponent(Type.GetType(tempstring));
-                        m_teamChar[j][i].m_skills[k] = tempSkill;
-                        tempSkill.m_user = m_teamChar[j][i];
-                        tempSkill.Init();
+                        //string tempstring = "Skill" + int.Parse(data_values[16 + k]);
+                        //Skill tempSkill = (Skill)m_teamChar[j][i].gameObject.AddComponent(Type.GetType(tempstring));
+                        //m_teamChar[j][i].m_skills[k] = tempSkill;
+                        //tempSkill.Init();
+                        //tempSkill.m_user = m_teamChar[j][i];
+
+                        m_teamChar[j][i].m_skills[k].m_skillIndex = int.Parse(data_values[16 + k]);
+                        m_teamChar[j][i].m_skills[k].GetScript();
+                        m_teamChar[j][i].m_skills[k].m_user = m_teamChar[j][i];
+
                     }
                 }
             }

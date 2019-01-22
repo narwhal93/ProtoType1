@@ -24,6 +24,10 @@ GameObject:
   - component: {fileID: 23606862088975756}
   - component: {fileID: 61650339424362458}
   - component: {fileID: 114348183770053230}
+  - component: {fileID: 114854106871845586}
+  - component: {fileID: 114041455416916092}
+  - component: {fileID: 114637753962183022}
+  - component: {fileID: 114044362193822756}
   m_Layer: 0
   m_Name: defaultCharcter
   m_TagString: Untagged
@@ -110,6 +114,92 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 101.8949, y: 141.8585}
   m_EdgeRadius: 0
+--- !u!114 &114041455416916092
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1338785383787548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de19d1336f66c3438ba4a7b7b697827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_skillIndex: 0
+  m_skillNumber: 0
+  m_skillType: 0
+  m_skillName: 
+  m_texture: 
+  m_skillText: 
+  m_skillTextAwaken: 
+  m_jumpFrame: 0
+  m_IAttackFrame: 0
+  m_IStrikeFrame: 
+  m_targetNum: 0
+  m_soulBurn: 0
+  m_jumpAnimation: 
+  m_jumpBackAnimation: 
+  m_attackAnimation: 
+  m_strikeAnimation: 
+  m_skillAwakening: 0
+  m_skillLevel: 0
+  m_coolDown: 0
+  m_curCoolDown: 0
+  m_IDamage: []
+  m_target: {fileID: 0}
+  m_user: {fileID: 0}
+  m_cooperation: 0
+  m_combo: 0
+  m_comboJumpFrame: 0
+  m_comboIAttackFrame: 0
+  m_comboIStrikeFrame: 
+  m_comboJumpAnimation: 
+  m_comboJumpBackAnimation: 
+  m_comboAttackAnimation: 
+  m_comboStrikeAnimation: 
+--- !u!114 &114044362193822756
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1338785383787548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de19d1336f66c3438ba4a7b7b697827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_skillIndex: 0
+  m_skillNumber: 0
+  m_skillType: 0
+  m_skillName: 
+  m_texture: 
+  m_skillText: 
+  m_skillTextAwaken: 
+  m_jumpFrame: 0
+  m_IAttackFrame: 0
+  m_IStrikeFrame: 
+  m_targetNum: 0
+  m_soulBurn: 0
+  m_jumpAnimation: 
+  m_jumpBackAnimation: 
+  m_attackAnimation: 
+  m_strikeAnimation: 
+  m_skillAwakening: 0
+  m_skillLevel: 0
+  m_coolDown: 0
+  m_curCoolDown: 0
+  m_IDamage: []
+  m_target: {fileID: 0}
+  m_user: {fileID: 0}
+  m_cooperation: 0
+  m_combo: 0
+  m_comboJumpFrame: 0
+  m_comboIAttackFrame: 0
+  m_comboIStrikeFrame: 
+  m_comboJumpAnimation: 
+  m_comboJumpBackAnimation: 
+  m_comboAttackAnimation: 
+  m_comboStrikeAnimation: 
 --- !u!114 &114208985732612566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -121,7 +211,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe93cee8ed2ae04c9b265bee378c09f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_skills: []
+  m_skills:
+  - {fileID: 114854106871845586}
+  - {fileID: 114041455416916092}
+  - {fileID: 114637753962183022}
+  - {fileID: 114044362193822756}
+  m_buff: []
   m_animation: {fileID: 0}
   m_barIcon: {fileID: 0}
   m_hpBar: {fileID: 0}
@@ -171,3 +266,89 @@ MonoBehaviour:
   _animationName: 
   loop: 0
   timeScale: 1
+--- !u!114 &114637753962183022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1338785383787548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de19d1336f66c3438ba4a7b7b697827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_skillIndex: 0
+  m_skillNumber: 0
+  m_skillType: 0
+  m_skillName: 
+  m_texture: 
+  m_skillText: 
+  m_skillTextAwaken: 
+  m_jumpFrame: 0
+  m_IAttackFrame: 0
+  m_IStrikeFrame: 
+  m_targetNum: 0
+  m_soulBurn: 0
+  m_jumpAnimation: 
+  m_jumpBackAnimation: 
+  m_attackAnimation: 
+  m_strikeAnimation: 
+  m_skillAwakening: 0
+  m_skillLevel: 0
+  m_coolDown: 0
+  m_curCoolDown: 0
+  m_IDamage: []
+  m_target: {fileID: 0}
+  m_user: {fileID: 0}
+  m_cooperation: 0
+  m_combo: 0
+  m_comboJumpFrame: 0
+  m_comboIAttackFrame: 0
+  m_comboIStrikeFrame: 
+  m_comboJumpAnimation: 
+  m_comboJumpBackAnimation: 
+  m_comboAttackAnimation: 
+  m_comboStrikeAnimation: 
+--- !u!114 &114854106871845586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1338785383787548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de19d1336f66c3438ba4a7b7b697827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_skillIndex: 0
+  m_skillNumber: 0
+  m_skillType: 0
+  m_skillName: 
+  m_texture: 
+  m_skillText: 
+  m_skillTextAwaken: 
+  m_jumpFrame: 0
+  m_IAttackFrame: 0
+  m_IStrikeFrame: 
+  m_targetNum: 0
+  m_soulBurn: 0
+  m_jumpAnimation: 
+  m_jumpBackAnimation: 
+  m_attackAnimation: 
+  m_strikeAnimation: 
+  m_skillAwakening: 0
+  m_skillLevel: 0
+  m_coolDown: 0
+  m_curCoolDown: 0
+  m_IDamage: []
+  m_target: {fileID: 0}
+  m_user: {fileID: 0}
+  m_cooperation: 0
+  m_combo: 0
+  m_comboJumpFrame: 0
+  m_comboIAttackFrame: 0
+  m_comboIStrikeFrame: 
+  m_comboJumpAnimation: 
+  m_comboJumpBackAnimation: 
+  m_comboAttackAnimation: 
+  m_comboStrikeAnimation: 
