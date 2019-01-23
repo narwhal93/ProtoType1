@@ -44,14 +44,6 @@ public class Character : MonoBehaviour {
     public float m_hp;
     public bool m_side;
 
-    public void ActivateBuff(Buff.ActionTiming tim)
-    {
-        for (int i = 0; i < m_buff.Count; i++)
-        {
-            m_buff[i].Action(tim);
-        }
-    }
-
     public void MoveBuff()
     {
         for(int i = 0; i < m_buff.Count; i++)
@@ -66,7 +58,7 @@ public class Character : MonoBehaviour {
 
     void OnMouseDown()
     {
-        Debug.Log("??");
+        Debug.Log("TargetClicked");
         BattleManager.Instance.CharacterClicked(this);
     }
 

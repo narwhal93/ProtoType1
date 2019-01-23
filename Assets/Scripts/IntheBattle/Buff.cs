@@ -15,16 +15,6 @@ public class Buff : MonoBehaviour{
 
     public int m_durationLeft;
 
-    public enum ActionTiming
-    {
-        GiveDamage = 0,
-        GetDamage,
-        StartTurn,
-        EndTrun
-    }
-
-    public ActionTiming m_tim;
-
     public enum BuffType
     { 
         Nothing = 0,
@@ -50,6 +40,11 @@ public class Buff : MonoBehaviour{
 
     public BuffType m_type;
 
+    public void Init()
+    {
+
+    }
+
     public void SetTarget(Character target)
     {
         m_target = target;
@@ -58,14 +53,6 @@ public class Buff : MonoBehaviour{
     public void SetUser(Character user)
     {
         m_user = user;
-    }
-
-    public void Action(ActionTiming timing)
-    {
-        if (m_tim == timing)
-        {
-            
-        }
     }
 
     public void Move(int Count)

@@ -15,6 +15,13 @@ public class Skill : MonoBehaviour{
 
     object[] m_strikeFrame;
 
+    [System.Serializable]
+    public struct AtSt
+    {
+        public int m_IStrikeFrame;
+        public Damage m_IDamage;
+    }
+
     // Static
     public int m_skillIndex;
     public int m_skillNumber;
@@ -24,8 +31,9 @@ public class Skill : MonoBehaviour{
     public string m_skillText;
     public string m_skillTextAwaken;
     public int m_jumpFrame;
+    public int m_jumpBackFrame;
     public int m_IAttackFrame;
-    public int[] m_IStrikeFrame;
+    public AtSt[] m_attackStrike;
     public int m_targetNum;
     public bool m_soulBurn;
     public string m_jumpAnimation;
@@ -40,7 +48,6 @@ public class Skill : MonoBehaviour{
     //Calculated
     public int m_coolDown;
     public int m_curCoolDown;
-    public Damage[] m_IDamage;
 
     public Character m_target;
     public Character m_user;
@@ -55,7 +62,7 @@ public class Skill : MonoBehaviour{
     [HideInInspector]
     public int m_comboIAttackFrame;
     [HideInInspector]
-    public int[] m_comboIStrikeFrame;
+    public AtSt[] m_comboAttackStrike;
     [HideInInspector]
     public string m_comboJumpAnimation;
     [HideInInspector]
@@ -74,10 +81,10 @@ public class Skill : MonoBehaviour{
         {
 
             m_attackTime = m_IAttackFrame;
-            m_strikeFrame = new object[m_IStrikeFrame.Length];
-            for (int i = 0; i < m_IStrikeFrame.Length; i++)
+            m_strikeFrame = new object[m_attackStrike.Length];
+            for (int i = 0; i < m_attackStrike.Length; i++)
             {
-                m_strikeFrame[i] = m_IStrikeFrame[i];
+                m_strikeFrame[i] = m_attackStrike[i].m_IStrikeFrame;
             }
             
             if ((m_skillType == SkillManager.SkillType.Active) ^ (m_user.m_side == m_target.m_side))
@@ -117,7 +124,7 @@ public class Skill : MonoBehaviour{
     }
     IEnumerator Jump_back(object[] Move)
     {
-        if ((int)Move[3] < m_jumpFrame)
+        if ((int)Move[3] < m_jumpBackFrame)
         {
             Vector3 temp = new Vector3((float)Move[0], (float)Move[1], (float)Move[2]);
             this.gameObject.transform.position -= temp;
@@ -134,6 +141,7 @@ public class Skill : MonoBehaviour{
 
             m_user.m_action = 0;
             m_user.m_barIcon.Action();
+            BattleManager.Instance.m_battleSt = BattleManager.BattleState.battleWaiting;
         }
         yield return null;
     }
@@ -160,7 +168,7 @@ public class Skill : MonoBehaviour{
             {
                 yield return new WaitForEndOfFrame();
             }
-            m_IDamage[j].GiveDamage(m_target, m_user);
+            m_attackStrike[j].m_IDamage.GiveDamage(m_target, m_user);
         }
         m_user.m_animation.AnimationName = m_jumpBackAnimation;
         StartCoroutine("Jump_back", m_move);
@@ -173,7 +181,6 @@ public class Skill : MonoBehaviour{
     public void MakeScript()
     {
         Json = JsonUtility.ToJson(this);
-        Debug.Log(Json);
         StreamWriter strWriter = new StreamWriter(Application.dataPath + "/Data/Skills/Skill" + m_skillIndex + ".Json");
         strWriter.WriteLine(Json);
         strWriter.Close();
@@ -184,7 +191,6 @@ public class Skill : MonoBehaviour{
         StreamReader strReader = new StreamReader(Application.dataPath + "/Data/Skills/Skill" + m_skillIndex + ".Json");
         string strData = strReader.ReadLine();
         strReader.Close();
-        Debug.Log(strData);
         Skill temp = this;
         JsonUtility.FromJsonOverwrite(strData, temp);
     }
@@ -218,9 +224,9 @@ public class Skill : MonoBehaviour{
                     target.m_buff[target.m_buff.Count - 1].gameObject.SetActive(true);
                     target.m_buff[target.m_buff.Count - 1].SetUser(target);
                     target.m_buff[target.m_buff.Count - 1].m_durationLeft = _buffs[i].m_buffturn;
-                    target.m_buff[target.m_buff.Count - 1].m_tim = _buffs[i].m_timing;
                     target.m_buff[target.m_buff.Count - 1].m_type = _buffs[i].m_bufftype;
                     target.m_buff[target.m_buff.Count - 1].m_extraParam = _buffs[i].m_extraParam;
+                    target.m_buff[target.m_buff.Count - 1].Init();
                 }
             }
             target.MoveBuff();
@@ -240,14 +246,12 @@ public class Skill : MonoBehaviour{
         public bool m_IsTagetEnemy;
         public int m_targetNum;
         public Buff.BuffType m_bufftype;
-        public Buff.ActionTiming m_timing;
         public int m_buffturn;
         public float m_extraParam;
         
-        public GiveBuff(Buff.BuffType type, Buff.ActionTiming timing, int buffturn, bool target, int targetNum, float extraParam)
+        public GiveBuff(Buff.BuffType type, int buffturn, bool target, int targetNum, float extraParam)
         {
             m_bufftype = type;
-            m_timing = timing;
             m_buffturn = buffturn;
             m_IsTagetEnemy = target;
             m_targetNum = targetNum;
@@ -267,27 +271,14 @@ public class SkillEditor : Editor
 
         if (myScript.m_combo)
         {
-            myScript.m_comboJumpFrame = EditorGUILayout.IntField("comboJumpFrame",myScript.m_comboJumpFrame);
+            myScript.m_comboJumpFrame = EditorGUILayout.IntField("comboJumpFrame", myScript.m_comboJumpFrame);
             myScript.m_comboIAttackFrame = EditorGUILayout.IntField("comboAttackFrame", myScript.m_comboIAttackFrame);
-            int m_comboStrikeLength = EditorGUILayout.IntField("comboIStrikeFrame", myScript.m_comboIStrikeFrame.Length);
-            if(myScript.m_comboIStrikeFrame.Length != m_comboStrikeLength) myScript.m_comboIStrikeFrame = new int[m_comboStrikeLength];
+            myScript.m_comboJumpAnimation = EditorGUILayout.TextField("comboJumpAnimation", myScript.m_comboJumpAnimation);
+            myScript.m_comboJumpBackAnimation = EditorGUILayout.TextField("comboJumpBackAnimation", myScript.m_comboJumpBackAnimation);
+            myScript.m_comboAttackAnimation = EditorGUILayout.TextField("m_comboAttackAnimation", myScript.m_comboAttackAnimation);
+            myScript.m_comboStrikeAnimation = EditorGUILayout.TextField("m_comboStrikeAnimation", myScript.m_comboStrikeAnimation);
 
-            for (int i = 0; i < m_comboStrikeLength; i++)
-            {
-                myScript.m_comboIStrikeFrame[i] = EditorGUILayout.IntField("comboIStrikeFrame" + i.ToString(), myScript.m_comboIStrikeFrame[i]);
-            }
-            
         }
-
-        if (GUILayout.Button("Refresh"))
-        {
-            myScript.m_IDamage = new Skill.Damage[myScript.m_IStrikeFrame.Length];
-            for (int i = 0; i < myScript.m_IStrikeFrame.Length; i++)
-            {
-                myScript.m_IDamage[i] = new Skill.Damage(0, new Skill.GiveBuff[] { });
-            }
-        }
-
         if (GUILayout.Button("Make Script"))
         {
             myScript.MakeScript();
