@@ -97,4 +97,54 @@ public class Util {
 
         return 0;
     }
+
+    public List<Character> GetTarget(int targetNum, Character target)
+    {
+        List<Character> temp;
+        temp = new List<Character>();
+        switch (targetNum)
+        {
+            case 1:
+                {
+                    temp.Add(target);
+                    break;
+                }
+            case 2:
+                {
+                    if (target.m_side ^ CharManager.Instance.m_isLeftSide)
+                    {
+                        switch (CharManager.Instance.m_teamChar[1].Count)
+                        {
+                            case 1:
+                                {
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    for (int i = 0; i < 2; i++)
+                                    {
+                                        temp.Add(CharManager.Instance.m_teamChar[1][i]);
+                                    }
+                                    break;
+                                }
+                        }
+                        for (int i = 0; i < CharManager.Instance.m_teamChar[1].Count; i++)
+                        {
+
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < CharManager.Instance.m_teamChar[0].Count; i++)
+                        {
+
+                        }
+
+                    }
+                    break;
+                }
+        }
+
+        return temp;
+    }
 }

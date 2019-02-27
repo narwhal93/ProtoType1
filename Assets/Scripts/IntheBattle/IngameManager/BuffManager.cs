@@ -12,13 +12,13 @@ public class BuffManager : SingletonMonoBehaviour<BuffManager> {
     GameObject m_BuffPrefab;
 
 
+
     void Start()
     {
         m_MaxBuff = 80;
 
         Buffs = new Stack<Buff>();
         MakeBuffs();
-
     }
 
     void MakeBuffs()

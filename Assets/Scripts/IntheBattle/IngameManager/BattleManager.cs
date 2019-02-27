@@ -46,6 +46,7 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager> {
     {
         m_myTurn = character;
         m_battleSt = BattleState.battleThinking;
+        m_myTurn.ActivateStartBuff();
         m_myTurn.m_animation.AnimationName = "stand_ready";
     }
 
@@ -53,8 +54,6 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager> {
     {
         m_charOnAction.Add(character);
     }
-
-
 
     // ActiveSKill
     public void ActivateSkill() 

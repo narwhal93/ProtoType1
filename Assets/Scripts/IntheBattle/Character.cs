@@ -19,7 +19,7 @@ public class Character : MonoBehaviour {
     public int m_index { get; set; }
     public string m_name { get; set; }
     public string m_portraitName { get; set; }
-    public string m_elementSymbol {get; set; }
+    public string m_elementSymbol { get; set; }
     public enum m_charClass
     {
         nothing = 0,
@@ -42,13 +42,29 @@ public class Character : MonoBehaviour {
 
     public float m_action;
     public float m_hp;
-    public bool m_side;
+    public bool m_side; // true = left, false = right
 
     public void MoveBuff()
     {
-        for(int i = 0; i < m_buff.Count; i++)
+        for (int i = 0; i < m_buff.Count; i++)
         {
             m_buff[i].Move(i);
+        }
+    }
+
+    public void ActivateBuff(Buff.BuffType buffType)
+    {
+        for (int i = 0; i < m_buff.Count; i++)
+        {
+            m_buff[i].Activator();
+        }
+    }
+
+    public void ActivateBuff(Buff.BuffType buffType, float damage)
+    {
+        for (int i = 0; i < m_buff.Count; i++)
+        {
+            m_buff[i].Activator(damage);
         }
     }
 

@@ -45,7 +45,7 @@ public class Skill : MonoBehaviour{
     public bool m_skillAwakening;
     public int m_skillLevel;
 
-    //Calculated
+    //Need Calculate
     public int m_coolDown;
     public int m_curCoolDown;
 
@@ -109,6 +109,7 @@ public class Skill : MonoBehaviour{
             Vector3 temp = new Vector3((float)Move[0], (float)Move[1], (float)Move[2]);
             this.gameObject.transform.position += temp;
             m_user.m_hpBar.Move();
+            m_user.MoveBuff();
             yield return new WaitForEndOfFrame();
             int temp2 = (int)Move[3] + 1;
             Move[3] = (object)temp2;
@@ -129,6 +130,7 @@ public class Skill : MonoBehaviour{
             Vector3 temp = new Vector3((float)Move[0], (float)Move[1], (float)Move[2]);
             this.gameObject.transform.position -= temp;
             m_user.m_hpBar.Move();
+            m_user.MoveBuff();
             yield return new WaitForEndOfFrame();
             int temp2 = (int)Move[3] + 1;
             Move[3] = (object)temp2;
@@ -168,6 +170,7 @@ public class Skill : MonoBehaviour{
             {
                 yield return new WaitForEndOfFrame();
             }
+
             m_attackStrike[j].m_IDamage.GiveDamage(m_target, m_user);
         }
         m_user.m_animation.AnimationName = m_jumpBackAnimation;
