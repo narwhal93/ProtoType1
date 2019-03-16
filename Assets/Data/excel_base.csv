@@ -1,6 +1,6 @@
 ﻿index,name,portrait,element symbol,class,태생 별 등급,한계 레벨,hp,공격력,방어력,속도,치명타확률,치명타 데미지 배율,효과 적중 확률,효과저항 확률,협공 확률,콤보 확률,스킬1,스킬2,스킬3,패시브,
 int,string,string,string,string,int,int,int,int,int,int,float,float,float,float,float,float,int,int,int,int,
-1,김일감,1_Portrait,화,전사,5,50,20,3,1,100,10,150,5,0,0,0,1,1,1,1,
+1,김일감,1_Portrait,화,전사,5,50,20,3,1,100,10,150,5,0,0,0,1,1,2,1,
 2,김이감,2_Portrait,수,서포터,3,50,15,2,1,95,10,150,5,0,0,0,1,1,1,1,
 
 

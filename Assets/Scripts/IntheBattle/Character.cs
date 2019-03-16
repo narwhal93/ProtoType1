@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 
+[System.Serializable]
 public class Character : MonoBehaviour {
 
     [SerializeField]
@@ -52,20 +53,37 @@ public class Character : MonoBehaviour {
         }
     }
 
-    public void ActivateBuff(Buff.BuffType buffType)
+    public void ClearBuff()
     {
         for (int i = 0; i < m_buff.Count; i++)
         {
-            m_buff[i].Activator();
+            if (m_buff[i].m_durationLeft == 0)
+            {
+                m_buff[i].RemoveBuff();
+                m_buff.Remove(m_buff[i]);
+                ClearBuff();
+                break;
+            }
         }
     }
 
-    public void ActivateBuff(Buff.BuffType buffType, float damage)
+    public void ActivateBuff(Buff.BuffTiming timing)
     {
         for (int i = 0; i < m_buff.Count; i++)
         {
-            m_buff[i].Activator(damage);
+            m_buff[i].Activator(timing);
         }
+        ClearBuff();
+    }
+
+    public float ActivateBuff(Buff.BuffTiming timing, float damage)
+    {
+        for (int i = 0; i < m_buff.Count; i++)
+        {
+            damage = m_buff[i].DmgActivator(timing, damage);
+        }
+        ClearBuff();
+        return damage;
     }
 
     public void ResetData() {
@@ -77,7 +95,4 @@ public class Character : MonoBehaviour {
         Debug.Log("TargetClicked");
         BattleManager.Instance.CharacterClicked(this);
     }
-
-   
-
 }

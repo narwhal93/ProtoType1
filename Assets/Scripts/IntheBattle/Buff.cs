@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[System.Serializable]
 public class Buff : MonoBehaviour{
 
     [SerializeField]
     Character m_target;
-
     [SerializeField]
     Character m_user;
 
@@ -20,9 +19,20 @@ public class Buff : MonoBehaviour{
     bool m_actInEnd;
     bool m_actInWound;
 
-    delegate void BuffActivating(float damage);
+    public enum BuffTiming
+    {
+        Start = 0,
+        Attack,
+        End,
+        Wound,
+        Passive
+    }
+
+    delegate void BuffActivating();
+    delegate float BuffDmgActivating(float damage);
 
     BuffActivating Action;
+    BuffDmgActivating DmgAction;
 
     public enum BuffType
     { 
@@ -53,6 +63,17 @@ public class Buff : MonoBehaviour{
     {
         switch (m_type)
         {
+            case BuffType.Nothing:
+                {
+                    m_actInStart = true;
+                    m_actInAttack = true;
+                    m_actInEnd = true;
+                    m_actInWound = true;
+                    Action = new BuffActivating(Nothing);
+                    DmgAction = new BuffDmgActivating(Nothing);
+                    break;
+                }
+
             case BuffType.Electrocuted:
                 {
                     m_actInStart = false;
@@ -60,6 +81,7 @@ public class Buff : MonoBehaviour{
                     m_actInEnd = false;
                     m_actInWound = true;
                     Action = new BuffActivating(ActElectrocuted);
+                    DmgAction = new BuffDmgActivating(Nothing);
                     break;
                 }
 
@@ -70,6 +92,7 @@ public class Buff : MonoBehaviour{
                     m_actInEnd = false;
                     m_actInWound = false;
                     Action = new BuffActivating(ActStun);
+                    DmgAction = new BuffDmgActivating(Nothing);
                     break;
                 }
 
@@ -79,6 +102,8 @@ public class Buff : MonoBehaviour{
                     m_actInAttack = false;
                     m_actInEnd = false;
                     m_actInWound = true;
+                    Action = new BuffActivating(ActSleep);
+                    DmgAction = new BuffDmgActivating(Nothing);
                     break;
                 }
         }
@@ -99,23 +124,107 @@ public class Buff : MonoBehaviour{
         this.gameObject.transform.position = m_user.gameObject.transform.position + new Vector3(-50 + 15*(Count%5), +165 + 15f*(Count/5), 0);
     }
 
-
-    public void Activator()
+    public void RemoveBuff()
     {
-        Action(0);
+        m_user = null;
+        m_target = null;
+        m_extraParam = 0;
+        m_type = BuffType.Nothing;
+        BuffManager.Instance.Buffs.Push(this);
+        this.gameObject.SetActive(false);
+        
     }
 
-    public void Activator(float damage)
+    public void Activator(BuffTiming timing)
     {
-        Action(damage);
+        switch (timing)
+        {
+            case BuffTiming.Start:
+                {
+                    if (m_actInStart)
+                    {
+                        Action();
+                        m_durationLeft -= 1;
+                    }
+                    break;
+                }
+            case BuffTiming.Attack:
+                {
+                    if (m_actInAttack)
+                    {
+                        Action();
+                        m_durationLeft -= 1;
+                    }
+                    break;
+                }
+            case BuffTiming.End:
+                {
+                    if (m_actInEnd)
+                    {
+                        Action();
+                        m_durationLeft -= 1;
+                    }
+                    break;
+                }
+            case BuffTiming.Wound:
+                {
+                    if (m_actInWound)
+                    {
+                        Action();
+                        m_durationLeft -= 1;
+                    }
+                    break;
+                }
+        }
+        
     }
 
-    void ActElectrocuted(float damage)
+    public float DmgActivator(BuffTiming timing, float damage)
     {
+        switch (timing)
+        {
+            case BuffTiming.Start:
+                {
+                    if (m_actInStart) return DmgAction(damage);
+                    break;
+                }
+            case BuffTiming.Attack:
+                {
+                    if (m_actInAttack) return DmgAction(damage);
+                    break;
+                }
+            case BuffTiming.End:
+                {
+                    if (m_actInEnd) return DmgAction(damage);
+                    break;
+                }
+            case BuffTiming.Wound:
+                {
+                    if (m_actInWound) return DmgAction(damage);
+                    break;
+                }
+        }
+        return 0;
+    }
+
+    public void Nothing()
+    {
+
+    }
+
+    public float Nothing(float damage)
+    {
+        return damage;
+    }
+
+    void ActElectrocuted()
+    {
+        m_user.m_hp -= m_extraParam;
+        m_user.m_hpBar.Action();
         return;
     }
 
-    void ActStun(float damage)
+    void ActStun()
     {
         return;
     }

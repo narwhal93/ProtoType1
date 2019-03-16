@@ -221,16 +221,16 @@ public class Skill : MonoBehaviour{
         {
             for (int i = 0; i < _buffs.Count; i++)
             {
+                target.m_buff.Add(BuffManager.Instance.Buffs.Pop());
                 if (_buffs[i].m_IsTagetEnemy)
                 {
-                    target.m_buff.Add(BuffManager.Instance.Buffs.Pop());
-                    target.m_buff[target.m_buff.Count - 1].gameObject.SetActive(true);
                     target.m_buff[target.m_buff.Count - 1].SetUser(target);
-                    target.m_buff[target.m_buff.Count - 1].m_durationLeft = _buffs[i].m_buffturn;
-                    target.m_buff[target.m_buff.Count - 1].m_type = _buffs[i].m_bufftype;
-                    target.m_buff[target.m_buff.Count - 1].m_extraParam = _buffs[i].m_extraParam;
-                    target.m_buff[target.m_buff.Count - 1].Init();
                 }
+                target.m_buff[target.m_buff.Count - 1].gameObject.SetActive(true);
+                target.m_buff[target.m_buff.Count - 1].m_durationLeft = _buffs[i].m_buffturn;
+                target.m_buff[target.m_buff.Count - 1].m_type = _buffs[i].m_bufftype;
+                target.m_buff[target.m_buff.Count - 1].m_extraParam = _buffs[i].m_extraParam;
+                target.m_buff[target.m_buff.Count - 1].Init();
             }
             target.MoveBuff();
         }
@@ -280,7 +280,6 @@ public class SkillEditor : Editor
             myScript.m_comboJumpBackAnimation = EditorGUILayout.TextField("comboJumpBackAnimation", myScript.m_comboJumpBackAnimation);
             myScript.m_comboAttackAnimation = EditorGUILayout.TextField("m_comboAttackAnimation", myScript.m_comboAttackAnimation);
             myScript.m_comboStrikeAnimation = EditorGUILayout.TextField("m_comboStrikeAnimation", myScript.m_comboStrikeAnimation);
-
         }
         if (GUILayout.Button("Make Script"))
         {
