@@ -50,11 +50,6 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager> {
         m_myTurn.m_animation.AnimationName = "stand_ready";
     }
 
-    public void OnActionList(Character character)
-    {
-        m_charOnAction.Add(character);
-    }
-
     // ActiveSKill
     public void ActivateSkill() 
     {
@@ -69,7 +64,7 @@ public class BattleManager : SingletonMonoBehaviour<BattleManager> {
         m_SKillSt = SkillState.Skill1;
         m_target = null;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		switch(m_battleSt)

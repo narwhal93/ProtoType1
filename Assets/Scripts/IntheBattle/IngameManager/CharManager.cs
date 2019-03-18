@@ -37,7 +37,7 @@ public class CharManager : SingletonMonoBehaviour<CharManager> {
         HpBarManager.Instance.m_hpBarIconList = new List<HpBar>();
 
         m_isLeftSide = true;
-
+      
         MakeCharacter();
         TimeBarManager.Instance.MakeIcons();
         HpBarManager.Instance.MakeIcons();

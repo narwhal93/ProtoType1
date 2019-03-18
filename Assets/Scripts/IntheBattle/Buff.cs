@@ -132,7 +132,6 @@ public class Buff : MonoBehaviour{
         m_type = BuffType.Nothing;
         BuffManager.Instance.Buffs.Push(this);
         this.gameObject.SetActive(false);
-        
     }
 
     public void Activator(BuffTiming timing)

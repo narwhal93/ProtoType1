@@ -65,8 +65,8 @@ MonoBehaviour:
     y: 658
     width: 886
     height: 329
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -92,8 +92,8 @@ MonoBehaviour:
     y: 0
     width: 886
     height: 987
-  m_MinSize: {x: 202, y: 321}
-  m_MaxSize: {x: 4002, y: 8021}
+  m_MinSize: {x: 202, y: 342}
+  m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
   controlID: 63
 --- !u!114 &5
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 492}
   m_MaxSize: {x: 10004, y: 14042}
   vertical: 0
-  controlID: 83
+  controlID: 84
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 492}
   m_MaxSize: {x: 10004, y: 14042}
   vertical: 1
-  controlID: 84
+  controlID: 85
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -579,9 +579,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 5029fdff
-    m_LastClickedID: -186032
-    m_ExpandedIDs: ca2bfdff2454fdff769afdff72b5fdffb0fdfdff5625feff6e4dfeff4c79feffc481feffa08bfeff58aafeffc0c9feffb8d4feff8ee9feffc4f6feffd412ffffac27ffff823cffffe255ffffb07affffdc8bffff68daffff86f2ffff9cfbfffff4ffffff000000000c2b0000ea2b0000222c0000e62c00002a2d0000622d00005c2e0000242f00005c2f00001e300000563000001831000050310000123200004a3200000c330000443300000c34000044340000063500003e350000a4390000e8390000203a0000923c0000d63c0000e43e0000224000005a400000584100003646000030470000684700008448000002490000464900007e490000
+    m_SelectedIDs: 0c2a0000
+    m_LastClickedID: 0
+    m_ExpandedIDs: 62ceffff9cfbffff000000005e2b00007e2b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -643,33 +643,33 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scripts/IntheBattle/IngameManager
+    - Assets/Scene
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts/IntheBattle/IngameManager
+  - Assets/Scene
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Unity_try\PPP
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: c6290000
-    m_LastClickedID: 10694
-    m_ExpandedIDs: 00000000222900007029000094290000da290000de290000e0290000f2290000322a0000822b0000842b0000862b000000ca9a3bffffff7f
+    m_SelectedIDs: 222a0000
+    m_LastClickedID: 10786
+    m_ExpandedIDs: 00000000222900007029000094290000da290000de290000e0290000f2290000322a0000062c0000082c00000a2c000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Skills
+      m_OriginalName: Skills
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 10802
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 13}
     m_SearchString: 
@@ -683,7 +683,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 182f0000
     m_LastClickedID: 12056
-    m_ExpandedIDs: 00000000222900007029000094290000da290000de290000e0290000f2290000322a0000822b0000842b0000862b0000
+    m_ExpandedIDs: 00000000222900007029000094290000da290000de290000e0290000f2290000322a0000062c0000082c00000a2c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
